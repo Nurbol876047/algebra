@@ -8,16 +8,6 @@ import * as THREE from "three";
 // --- 2D Coordinate System Base ---
 function CoordinateSystem({ children }: { children?: React.ReactNode }) {
 
-  if (subjectId === "geometry11") {
-    switch (unitId) {
-      case "unit-11g-1": return <PolyhedronScene />;
-      case "unit-11g-2": 
-        if (topicId === "topic-11g-2-2") return <AnalyticGeometryScene />;
-        return <RevolutionBodiesScene />;
-      case "unit-11g-3": return <RevolutionBodiesScene />;
-    }
-  }
-
   return (
     <div className="relative w-full aspect-square max-w-md mx-auto bg-white border-2 border-slate-200 rounded-2xl shadow-inner overflow-hidden">
       <svg viewBox="-10 -10 20 20" className="w-full h-full text-slate-200">
