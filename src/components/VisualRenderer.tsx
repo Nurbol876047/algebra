@@ -7,6 +7,17 @@ import * as THREE from "three";
 
 // --- 2D Coordinate System Base ---
 function CoordinateSystem({ children }: { children?: React.ReactNode }) {
+
+  if (subjectId === "geometry11") {
+    switch (unitId) {
+      case "unit-11g-1": return <PolyhedronScene />;
+      case "unit-11g-2": 
+        if (topicId === "topic-11g-2-2") return <AnalyticGeometryScene />;
+        return <RevolutionBodiesScene />;
+      case "unit-11g-3": return <RevolutionBodiesScene />;
+    }
+  }
+
   return (
     <div className="relative w-full aspect-square max-w-md mx-auto bg-white border-2 border-slate-200 rounded-2xl shadow-inner overflow-hidden">
       <svg viewBox="-10 -10 20 20" className="w-full h-full text-slate-200">
@@ -430,6 +441,59 @@ function AnalyticGeometryScene() {
       </Canvas>
       <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
         Аналитикалық геометрия: Сфера және жазықтық
+      </div>
+    </div>
+  );
+}
+
+
+function PolyhedronScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
+      <Canvas camera={{ position: [6, 6, 6], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        {/* Cube (Prism) */}
+        <Box args={[2, 2, 2]} position={[-2, 1, 0]}>
+          <meshStandardMaterial color="#10b981" transparent opacity={0.8} wireframe={true} />
+        </Box>
+        
+        {/* Pyramid (Cone with 4 radial segments) */}
+        <Cylinder args={[0, 1.5, 2.5, 4]} position={[2, 1.25, 0]}>
+          <meshStandardMaterial color="#f59e0b" transparent opacity={0.8} wireframe={true} />
+        </Cylinder>
+        
+        <OrbitControls autoRotate autoRotateSpeed={1.5} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
+        Стереометрия: Призма және Пирамида
+      </div>
+    </div>
+  );
+}
+
+function RevolutionBodiesScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
+      <Canvas camera={{ position: [6, 6, 6], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        {/* Cylinder */}
+        <Cylinder args={[1.5, 1.5, 3, 32]} position={[-2, 1.5, 0]}>
+          <meshStandardMaterial color="#3b82f6" transparent opacity={0.6} wireframe={true} />
+        </Cylinder>
+        
+        {/* Cone */}
+        <Cylinder args={[0, 1.5, 3, 32]} position={[2, 1.5, 0]}>
+          <meshStandardMaterial color="#ef4444" transparent opacity={0.6} wireframe={true} />
+        </Cylinder>
+        
+        <OrbitControls autoRotate autoRotateSpeed={1.5} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
+        Айналу денелері: Цилиндр және Конус
       </div>
     </div>
   );
