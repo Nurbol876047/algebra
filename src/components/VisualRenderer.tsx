@@ -562,6 +562,16 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
     }
   }
 
+  if (subjectId === "geometry11") {
+    switch (unitId) {
+      case "unit-11g-1": return <PolyhedronScene />;
+      case "unit-11g-2": 
+        if (topicId === "topic-11g-2-2") return <AnalyticGeometryScene />;
+        return <RevolutionBodiesScene />;
+      case "unit-11g-3": return <RevolutionBodiesScene />;
+    }
+  }
+
   return (
     <div className="w-full flex justify-center">
       <div className="text-slate-400 font-medium p-8 border-2 border-dashed border-slate-200 rounded-2xl">
