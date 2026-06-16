@@ -31,7 +31,7 @@ export default function Sidebar() {
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-blue-600">
           <BookOpen className="w-6 h-6" />
-          <span>Math 9 Grade</span>
+          <span>Математика</span>
         </Link>
       </div>
       <nav className="px-4 pb-6 space-y-2">
