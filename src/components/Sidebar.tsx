@@ -44,7 +44,7 @@ export default function Sidebar() {
                 className="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  {subject.id === "algebra" ? <Calculator className="w-4 h-4" /> : <PenTool className="w-4 h-4" />}
+                  {subject.id.includes("algebra") ? <Calculator className="w-4 h-4" /> : <PenTool className="w-4 h-4" />}
                   {subject.title}
                 </div>
                 {isSubExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}

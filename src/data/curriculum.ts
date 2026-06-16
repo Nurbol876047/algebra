@@ -4,6 +4,7 @@ import { geometry } from "./geometry";
 import { algebra10 } from "./algebra10";
 import { geometry10 } from "./geometry10";
 import { algebra11 } from "./algebra11";
+import { geometry11 } from "./geometry11";
 
 export * from "./types";
 
@@ -12,7 +13,8 @@ export const curriculum: Subject[] = [
   geometry,
   algebra10,
   geometry10,
-  algebra11
+  algebra11,
+  geometry11
 ];
 
 export function getSubject(id: string) {
