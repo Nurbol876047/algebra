@@ -239,32 +239,56 @@ $b_1 \\xrightarrow{\\times q} b_2 \\xrightarrow{\\times q} b_3$
 Кез келген $\\alpha$ бұрышы үшін синус пен косинус квадраттарының қосындысы 1-ге тең (Пифагор теоремасының тригонометриялық түрі).
 Тангенс пен котангенс функциялары синус пен косинустың қатынастары ретінде анықталады.
           `,
-          formulas: `Формулалар: $a^2 + b^2 = c^2$, $f(x) = y$.`,
+          formulas: `**Негізгі тригонометриялық тепе-теңдіктер:**
+- $\\sin^2 \\alpha + \\cos^2 \\alpha = 1$
+- $\\tan \\alpha = \\frac{\\sin \\alpha}{\\cos \\alpha}$, мұндағы $\\cos \\alpha \\neq 0$
+- $\\cot \\alpha = \\frac{\\cos \\alpha}{\\sin \\alpha}$, мұндағы $\\sin \\alpha \\neq 0$
+- $\\tan \\alpha \\cdot \\cot \\alpha = 1$
+- $1 + \\tan^2 \\alpha = \\frac{1}{\\cos^2 \\alpha}$
+- $1 + \\cot^2 \\alpha = \\frac{1}{\\sin^2 \\alpha}$`,
           visualSchemas: `
 **Бірлік шеңбер:**
 Радиусы 1-ге тең шеңберде кез келген нүктенің координаталары $(\\cos \\alpha, \\sin \\alpha)$ болады.
           `,
           examples: [
-            { title: `Мысал 1: Базалық теңдеу`, steps: [{ title: `Берілгені`, description: `Теңдеуді шешіңіз: $2x + 6 = 14$` }, { title: `1-қадам`, description: `Белгісізді бір жаққа қалдыру үшін екі жағынан да 6-ны азайтамыз: $2x = 14 - 6$` }, { title: `2-қадам`, description: `$2x = 8$. Енді екі жағын да 2-ге бөлеміз: $x = 4$.` }], answer: `x = 4` },
-            { title: `Мысал 2: Өрнекті ықшамдау`, steps: [{ title: `Берілгені`, description: `$3(a + 2) - 2a$ өрнегінің мәнін ықшамдаңыз.` }, { title: `1-қадам`, description: `Жақшаны ашамыз: $3 \cdot a + 3 \cdot 2 - 2a = 3a + 6 - 2a$` }, { title: `2-қадам`, description: `Ұқсас мүшелерді біріктіреміз: $(3a - 2a) + 6 = a + 6$` }], answer: `a + 6` }
+            {
+              title: `Мысал 1: Тепе-теңдікті қолдану`,
+              steps: [
+                { title: `Берілгені`, description: `Егер $\\sin \\alpha = 0.6$ және $\\alpha$ сүйір бұрыш ($0 < \\alpha < 90^\\circ$) болса, $\\cos \\alpha$ табыңыз.` },
+                { title: `1-қадам`, description: `Негізгі тепе-теңдікті қолданамыз: $\\sin^2 \\alpha + \\cos^2 \\alpha = 1$.` },
+                { title: `2-қадам`, description: `Орнына қоямыз: $0.6^2 + \\cos^2 \\alpha = 1 \\Rightarrow 0.36 + \\cos^2 \\alpha = 1$.` },
+                { title: `3-қадам`, description: `Есептейміз: $\\cos^2 \\alpha = 1 - 0.36 = 0.64$. Сүйір бұрыш үшін косинус оң болады: $\\cos \\alpha = \\sqrt{0.64} = 0.8$.` }
+              ],
+              answer: `0.8`
+            },
+            {
+              title: `Мысал 2: Өрнекті ықшамдау`,
+              steps: [
+                { title: `Берілгені`, description: `Өрнекті ықшамдаңыз: $(1 - \\sin^2 \\alpha) \\cdot \\tan^2 \\alpha$.` },
+                { title: `1-қадам`, description: `Жақша ішін ауыстырамыз: $1 - \\sin^2 \\alpha = \\cos^2 \\alpha$.` },
+                { title: `2-қадам`, description: `Тангенсті ашамыз: $\\tan^2 \\alpha = \\frac{\\sin^2 \\alpha}{\\cos^2 \\alpha}$.` },
+                { title: `3-қадам`, description: `Көбейтеміз: $\\cos^2 \\alpha \\cdot \\frac{\\sin^2 \\alpha}{\\cos^2 \\alpha} = \\sin^2 \\alpha$.` }
+              ],
+              answer: `\\sin^2 \\alpha`
+            }
           ],
           practice: [
-            { question: `Тақырып бойынша есеп: $2x + 4 = 10$, $x$ табыңыз.`, solution: `$2x = 6 \Rightarrow x = 3.0$`, answer: `3.0` },
-            { question: `Өрнекті ықшамдаңыз: $4a - a + 2$`, solution: `$3a + 2$`, answer: `3a+2` },
-            { question: `Бөлшекті қысқартыңыз: $\frac{16x^3}{4x}$`, solution: `Жауап: $4x^2$`, answer: `4x^2` },
-            { question: `Квадраттың қабырғасы 4. Ауданын табыңыз.`, solution: `$S = 4^2 = 16$`, answer: `16` },
-            { question: `$f(x) = 4x$ болса, $f(2)$ неге тең?`, solution: `$f(2) = 4 \cdot 2 = 8$`, answer: `8` }
+            { question: `Өрнекті ықшамдаңыз: $1 - \\cos^2 \\alpha$.`, solution: `Негізгі тепе-теңдік бойынша: $\\sin^2 \\alpha + \\cos^2 \\alpha = 1$, демек $1 - \\cos^2 \\alpha = \\sin^2 \\alpha$.`, answer: `\\sin^2 \\alpha` },
+            { question: `Егер $\\cos \\alpha = 0.8$ (сүйір бұрыш) болса, $\\tan \\alpha$ неге тең?`, solution: `$\\sin^2 \\alpha = 1 - 0.64 = 0.36 \\Rightarrow \\sin \\alpha = 0.6$. $\\tan \\alpha = \\frac{0.6}{0.8} = 0.75$.`, answer: `0.75` },
+            { question: `Ықшамдаңыз: $\\cos \\alpha \\cdot \\tan \\alpha$.`, solution: `$\\cos \\alpha \\cdot \\frac{\\sin \\alpha}{\\cos \\alpha} = \\sin \\alpha$.`, answer: `\\sin \\alpha` },
+            { question: `Егер $\\tan \\alpha = 2$ болса, $\\cot \\alpha$ табыңыз.`, solution: `$\\tan \\alpha \\cdot \\cot \\alpha = 1 \\Rightarrow \\cot \\alpha = 1 / \\tan \\alpha = 1/2 = 0.5$.`, answer: `0.5` },
+            { question: `Өрнектің мәнін табыңыз: $\\sin^2 30^\\circ + \\cos^2 30^\\circ$.`, solution: `Кез келген бұрыш үшін бұл қосынды 1-ге тең.`, answer: `1` }
           ],
           selfCheck: [
             "Тангенс қандай бұрыштарда анықталмаған?",
             "Негізгі тригонометриялық тепе-теңдік қалай дәлелденеді?"
           ],
           miniTest: [
-            { question: `Төмендегілердің қайсысы Тақырып ұғымына жатады?`, options: [`Функция`, `Теңдеу`, `Формула`, `Барлығы`], correctAnswerIndex: 3 },
-            { question: `Егер $x = 4$ болса, $x^2$ неге тең?`, options: [`16`, `8`, `6`, `17`], correctAnswerIndex: 0 },
-            { question: `Көбейтіндіні табыңыз: $4 \cdot 4$`, options: [`8`, `16`, `17`, `0`], correctAnswerIndex: 1 },
-            { question: `Дұрыс тұжырымды табыңыз:`, options: [`$x^2$ әрқашан оң немесе нөл`, `$x^2$ теріс болуы мүмкін`, `Түбір астынан теріс сан шығады`, `0-ге бөлуге болады`], correctAnswerIndex: 0 },
-            { question: `$4x = 16$ теңдеуінің түбірі:`, options: [`4`, `4`, `5`, `16`], correctAnswerIndex: 0 }
+            { question: `Негізгі тригонометриялық тепе-теңдікті көрсетіңіз:`, options: [`$\\sin \\alpha + \\cos \\alpha = 1$`, `$\\sin^2 \\alpha + \\cos^2 \\alpha = 1$`, `$\\sin^2 \\alpha - \\cos^2 \\alpha = 1$`, `$\\tan \\alpha + \\cot \\alpha = 1$`], correctAnswerIndex: 1 },
+            { question: `$\\tan \\alpha$ нені білдіреді?`, options: [`$\\cos \\alpha / \\sin \\alpha$`, `$\\sin \\alpha / \\cos \\alpha$`, `$1 / \\sin \\alpha$`, `$1 / \\cos \\alpha$`], correctAnswerIndex: 1 },
+            { question: `$(1 - \\sin^2 \\alpha)$ неге тең?`, options: [`$\\cos^2 \\alpha$`, `$\\sin^2 \\alpha$`, `$\\tan^2 \\alpha$`, `1`], correctAnswerIndex: 0 },
+            { question: `Егер $\\sin \\alpha = 1$ болса, $\\cos \\alpha$ қандай болады?`, options: [`1`, `-1`, `0`, `Анықталмайды`], correctAnswerIndex: 2 },
+            { question: `$\\cot \\alpha$ қандай жағдайда анықталмаған?`, options: [`$\\cos \\alpha = 0$`, `$\\sin \\alpha = 0$`, `$\\tan \\alpha = 1$`, `$\\alpha = 45^\\circ$`], correctAnswerIndex: 1 }
           ]
         }
       ]
