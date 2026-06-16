@@ -24,6 +24,7 @@ const TABS = [
   { id: "test", label: "Мини-тест", icon: Target }
 ] as const;
 
+
 export default function TopicPage({ params }: { params: Promise<{ subjectId: string; unitId: string; topicId: string }> }) {
   const { subjectId, unitId, topicId } = use(params);
   
