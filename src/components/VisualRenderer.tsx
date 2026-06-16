@@ -489,6 +489,39 @@ function RevolutionBodiesScene() {
   );
 }
 
+function SphereScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
+      <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        {/* Solid inner sphere */}
+        <Sphere args={[2, 32, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#8b5cf6" transparent opacity={0.3} />
+        </Sphere>
+        {/* Wireframe outer sphere */}
+        <Sphere args={[2.01, 16, 16]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#c4b5fd" wireframe={true} opacity={0.5} transparent />
+        </Sphere>
+        
+        {/* Radius line */}
+        <Line points={[[0,0,0], [2,0,0]]} color="#f59e0b" lineWidth={2} />
+        
+        {/* Center dot */}
+        <Sphere args={[0.1, 8, 8]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#ef4444" />
+        </Sphere>
+        
+        <OrbitControls autoRotate autoRotateSpeed={1} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
+        Айналу денелері: Сфера және Шар
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -556,7 +589,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
     switch (unitId) {
       case "unit-11g-1": return <PolyhedronScene />;
       case "unit-11g-2": 
-        if (topicId === "topic-11g-2-2") return <AnalyticGeometryScene />;
+        if (topicId === "topic-11g-2-2") return <SphereScene />;
         return <RevolutionBodiesScene />;
       case "unit-11g-3": return <RevolutionBodiesScene />;
     }
