@@ -43,26 +43,46 @@ $$
 2. **Парабола + Түзу**: 2 нүкте, 1 нүкте немесе қиылыспайды.
           `,
           examples: [
-            { title: `Мысал 1: Базалық теңдеу`, steps: [{ title: `Берілгені`, description: `Теңдеуді шешіңіз: $2x + 6 = 14$` }, { title: `1-қадам`, description: `Белгісізді бір жаққа қалдыру үшін екі жағынан да 6-ны азайтамыз: $2x = 14 - 6$` }, { title: `2-қадам`, description: `$2x = 8$. Енді екі жағын да 2-ге бөлеміз: $x = 4$.` }], answer: `x = 4` },
-            { title: `Мысал 2: Өрнекті ықшамдау`, steps: [{ title: `Берілгені`, description: `$3(a + 2) - 2a$ өрнегінің мәнін ықшамдаңыз.` }, { title: `1-қадам`, description: `Жақшаны ашамыз: $3 \cdot a + 3 \cdot 2 - 2a = 3a + 6 - 2a$` }, { title: `2-қадам`, description: `Ұқсас мүшелерді біріктіреміз: $(3a - 2a) + 6 = a + 6$` }], answer: `a + 6` }
+            {
+              title: `Мысал 1: Алмастыру тәсілі`,
+              steps: [
+                { title: `Берілгені`, description: `Жүйені шешіңіз: $\\begin{cases} x - y = 2 \\\\ x^2 + y^2 = 10 \\end{cases}$` },
+                { title: `1-қадам`, description: `Бірінші теңдеуден $x$-ті өрнектейміз: $x = y + 2$.` },
+                { title: `2-қадам`, description: `Оны екінші теңдеуге қоямыз: $(y + 2)^2 + y^2 = 10$.` },
+                { title: `3-қадам`, description: `Жақшаны ашып ықшамдаймыз: $y^2 + 4y + 4 + y^2 = 10 \\Rightarrow 2y^2 + 4y - 6 = 0 \\Rightarrow y^2 + 2y - 3 = 0$.` },
+                { title: `4-қадам`, description: `Квадрат теңдеуді шешеміз: $y_1 = 1$, $y_2 = -3$.` },
+                { title: `5-қадам`, description: `$x$-тің сәйкес мәндерін табамыз: $y_1 = 1 \\Rightarrow x_1 = 3$; $y_2 = -3 \\Rightarrow x_2 = -1$.` }
+              ],
+              answer: `(3; 1) және (-1; -3)`
+            },
+            {
+              title: `Мысал 2: Қосу тәсілі`,
+              steps: [
+                { title: `Берілгені`, description: `Жүйені шешіңіз: $\\begin{cases} x^2 - y = 5 \\\\ x^2 + y = 13 \\end{cases}$` },
+                { title: `1-қадам`, description: `Екі теңдеуді қосамыз: $(x^2 - y) + (x^2 + y) = 5 + 13 \\Rightarrow 2x^2 = 18$.` },
+                { title: `2-қадам`, description: `$x^2 = 9 \\Rightarrow x_1 = 3, x_2 = -3$.` },
+                { title: `3-қадам`, description: `Әр $x$ үшін $y$-ті табамыз: $x^2 - y = 5 \\Rightarrow 9 - y = 5 \\Rightarrow y = 4$. Бұл $x$-тің екі мәнінде де бірдей.` }
+              ],
+              answer: `(3; 4) және (-3; 4)`
+            }
           ],
           practice: [
-            { question: `Тақырып бойынша есеп: $2x + 4 = 10$, $x$ табыңыз.`, solution: `$2x = 6 \Rightarrow x = 3.0$`, answer: `3.0` },
-            { question: `Өрнекті ықшамдаңыз: $4a - a + 2$`, solution: `$3a + 2$`, answer: `3a+2` },
-            { question: `Бөлшекті қысқартыңыз: $\frac{16x^3}{4x}$`, solution: `Жауап: $4x^2$`, answer: `4x^2` },
-            { question: `Квадраттың қабырғасы 4. Ауданын табыңыз.`, solution: `$S = 4^2 = 16$`, answer: `16` },
-            { question: `$f(x) = 4x$ болса, $f(2)$ неге тең?`, solution: `$f(2) = 4 \cdot 2 = 8$`, answer: `8` }
+            { question: `Жүйені шешіңіз: $\\begin{cases} y = x^2 \\\\ y = x + 2 \\end{cases}$`, solution: `$x^2 = x + 2 \\Rightarrow x^2 - x - 2 = 0 \\Rightarrow x_1=2, x_2=-1$. $y_1=4, y_2=1$.`, answer: `(2; 4), (-1; 1)` },
+            { question: `Жүйені шешіңіз: $\\begin{cases} x y = 6 \\\\ x + y = 5 \\end{cases}$`, solution: `Виет теоремасы бойынша бұл $t^2 - 5t + 6 = 0$ теңдеуінің түбірлері: 2 және 3. Демек $x=2, y=3$ немесе $x=3, y=2$.`, answer: `(2; 3), (3; 2)` },
+            { question: `Жүйені шешіңіз: $\\begin{cases} x^2 + y^2 = 25 \\\\ y - x = 1 \\end{cases}$`, solution: `$y = x + 1 \\Rightarrow x^2 + (x+1)^2 = 25 \\Rightarrow 2x^2 + 2x - 24 = 0 \\Rightarrow x^2 + x - 12 = 0$. $x_1=3, x_2=-4$. $y_1=4, y_2=-3$.`, answer: `(3; 4), (-4; -3)` },
+            { question: `Жүйе неше шешімге ие: $\\begin{cases} x^2 + y^2 = 4 \\\\ y = 3 \\end{cases}$?`, solution: `$x^2 + 3^2 = 4 \\Rightarrow x^2 = -5$. Нақты сандар жиынында шешімі жоқ.`, answer: `Шешімі жоқ` },
+            { question: `Жүйені шешіңіз: $\\begin{cases} x - y = 1 \\\\ x y = 12 \\end{cases}$`, solution: `$x = y+1 \\Rightarrow (y+1)y = 12 \\Rightarrow y^2+y-12=0 \\Rightarrow y_1=3, y_2=-4$. $x_1=4, x_2=-3$.`, answer: `(4; 3), (-3; -4)` }
           ],
           selfCheck: [
             "Алмастыру тәсілін қандай жағдайда қолданған тиімді?",
             "Графиктік тәсілмен шығарудың артықшылығы мен кемшілігі қандай?"
           ],
           miniTest: [
-            { question: `Төмендегілердің қайсысы Тақырып ұғымына жатады?`, options: [`Функция`, `Теңдеу`, `Формула`, `Барлығы`], correctAnswerIndex: 3 },
-            { question: `Егер $x = 4$ болса, $x^2$ неге тең?`, options: [`16`, `8`, `6`, `17`], correctAnswerIndex: 0 },
-            { question: `Көбейтіндіні табыңыз: $4 \cdot 4$`, options: [`8`, `16`, `17`, `0`], correctAnswerIndex: 1 },
-            { question: `Дұрыс тұжырымды табыңыз:`, options: [`$x^2$ әрқашан оң немесе нөл`, `$x^2$ теріс болуы мүмкін`, `Түбір астынан теріс сан шығады`, `0-ге бөлуге болады`], correctAnswerIndex: 0 },
-            { question: `$4x = 16$ теңдеуінің түбірі:`, options: [`4`, `4`, `5`, `16`], correctAnswerIndex: 0 }
+            { question: `Сызықтық емес теңдеулер жүйесі дегеніміз не?`, options: [`Барлық теңдеулері сызықтық жүйе`, `Кем дегенде бір теңдеуі сызықтық емес жүйе`, `Тек квадрат теңдеулерден тұратын жүйе`, `Теңдеулері жоқ жүйе`], correctAnswerIndex: 1 },
+            { question: `Графиктік тәсілмен $\\begin{cases} x^2 + y^2 = 9 \\\\ y = x \\end{cases}$ жүйесін шешкенде, қандай фигуралар қиылысады?`, options: [`Екі түзу`, `Екі шеңбер`, `Шеңбер және түзу`, `Парабола және түзу`], correctAnswerIndex: 2 },
+            { question: `$\\begin{cases} y = x^2 \\\\ y = 4 \\end{cases}$ жүйесінің неше шешімі бар?`, options: [`1`, `2`, `3`, `Шешімі жоқ`], correctAnswerIndex: 1 },
+            { question: `Алмастыру тәсілін қолданғанда $\\begin{cases} x - y = 3 \\\\ x y = 4 \\end{cases}$ жүйесінде $x$-ті қалай өрнектеу тиімді?`, options: [`$x = 3 - y$`, `$x = y - 3$`, `$x = 3 + y$`, `$x = 4/y$`], correctAnswerIndex: 2 },
+            { question: `$\\begin{cases} x^2 - y^2 = 0 \\\\ x + y = 2 \\end{cases}$ жүйесінің бір шешімін көрсетіңіз.`, options: [`(1; 1)`, `(2; 0)`, `(0; 2)`, `(-1; 3)`], correctAnswerIndex: 0 }
           ]
         }
       ]
