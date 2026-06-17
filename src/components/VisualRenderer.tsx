@@ -602,6 +602,69 @@ function SequenceGraph() {
   );
 }
 
+function TransformationsGraph() {
+  const baseParabola = useMemo(() => {
+    let pts = "";
+    for (let x = -5; x <= 5; x += 0.1) pts += `${x},${x * x} `;
+    return pts;
+  }, []);
+
+  const upParabola = useMemo(() => {
+    let pts = "";
+    for (let x = -5; x <= 5; x += 0.1) pts += `${x},${x * x + 4} `;
+    return pts;
+  }, []);
+
+  const rightParabola = useMemo(() => {
+    let pts = "";
+    for (let x = -2; x <= 8; x += 0.1) pts += `${x},${(x - 3) * (x - 3)} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <defs>
+          <marker id="arrowBlueTr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+          </marker>
+          <marker id="arrowGreenTr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
+          </marker>
+        </defs>
+
+        {/* Base: y = x^2 */}
+        <polyline points={baseParabola} fill="none" stroke="#94a3b8" strokeWidth="0.15" strokeDasharray="0.3,0.3" />
+        
+        {/* Up: y = x^2 + 4 */}
+        <polyline points={upParabola} fill="none" stroke="#3b82f6" strokeWidth="0.2" />
+        <line x1="0" y1="0" x2="0" y2="3.8" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" markerEnd="url(#arrowBlueTr)" />
+
+        {/* Right: y = (x-3)^2 */}
+        <polyline points={rightParabola} fill="none" stroke="#10b981" strokeWidth="0.2" />
+        <line x1="0" y1="0" x2="2.8" y2="0" stroke="#10b981" strokeWidth="0.1" strokeDasharray="0.2,0.2" markerEnd="url(#arrowGreenTr)" />
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Графиктерді түрлендіру</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-slate-400 rounded-full"></div>
+            <span className="opacity-80">Негізгі функция: y = x²</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">1-мысал: y = x² + 4 (4 бірлік жоғары)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">2-мысал: y = (x-3)² (3 бірлік оңға)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -637,7 +700,8 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-14": return <ExtremaGraph />;
       case "unit-15":
       case "unit-16": return <StatsGraph />;
-      default: return <FunctionGraph />; // covers unit-1, 2, 4, 5, 17
+      case "unit-2": return <TransformationsGraph />;
+      default: return <FunctionGraph />; // covers unit-1, 4, 5, 17
     }
   }
   
