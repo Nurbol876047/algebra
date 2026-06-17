@@ -556,6 +556,46 @@ function NonLinearSystemGraph() {
   );
 }
 
+function SequenceGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Axis Labels */}
+        <text x="8" y="-1" fontSize="1" fill="#64748b" transform="scale(1,-1)">n</text>
+        <text x="0.5" y="8" fontSize="1" fill="#64748b" transform="scale(1,-1)">y_n</text>
+
+        {/* Arithmetic: a_n = 1 + 2(n-1) -> (1,1), (2,3), (3,5), (4,7), (5,9) */}
+        <polyline points="1,1 2,3 3,5 4,7 5,9" fill="none" stroke="#3b82f6" strokeWidth="0.2" />
+        <circle cx="1" cy="1" r="0.3" fill="#3b82f6" />
+        <circle cx="2" cy="3" r="0.3" fill="#3b82f6" />
+        <circle cx="3" cy="5" r="0.3" fill="#3b82f6" />
+        <circle cx="4" cy="7" r="0.3" fill="#3b82f6" />
+        <circle cx="5" cy="9" r="0.3" fill="#3b82f6" />
+
+        {/* Geometric: b_n = 1 * 2^(n-1) -> (1,1), (2,2), (3,4), (4,8) */}
+        <polyline points="1,1 2,2 3,4 4,8" fill="none" stroke="#10b981" strokeWidth="0.2" />
+        <circle cx="1" cy="1" r="0.3" fill="#10b981" />
+        <circle cx="2" cy="2" r="0.3" fill="#10b981" />
+        <circle cx="3" cy="4" r="0.3" fill="#10b981" />
+        <circle cx="4" cy="8" r="0.3" fill="#10b981" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Тізбектердің өсу графигі</h4>
+        <div className="flex flex-col gap-2 text-sm opacity-80">
+          <div className="flex items-center gap-2 justify-center">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span>Арифметикалық прогрессия (түзу сызықты)</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span>Геометриялық прогрессия (экспоненциалды)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -563,7 +603,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
   if (subjectId === "algebra") {
     switch (unitId) {
       case "unit-1": return <NonLinearSystemGraph />; // Теңдеулер мен теңсіздіктер
-      case "unit-3": return <StatsGraph />;    // Тізбектер
+      case "unit-3": return <SequenceGraph />;    // Тізбектер
       case "unit-4": return <UnitCircle />;    // Тригонометрия
     }
   }
