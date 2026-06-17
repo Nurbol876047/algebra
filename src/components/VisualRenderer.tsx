@@ -665,6 +665,59 @@ function TransformationsGraph() {
   );
 }
 
+function EquationsGraph() {
+  const quadParabola = useMemo(() => {
+    let pts = "";
+    for (let x = -1; x <= 3.5; x += 0.1) {
+      pts += `${x},${2 * x * x - 5 * x + 3} `;
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Quadratic: y = 2x^2 - 5x + 3 */}
+        <polyline points={quadParabola} fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        {/* Roots for quadratic: x=1, x=1.5 */}
+        <circle cx="1" cy="0" r="0.2" fill="#3b82f6" />
+        <circle cx="1.5" cy="0" r="0.2" fill="#3b82f6" />
+        <text x="0.5" y="-1" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">x₁=1</text>
+        <text x="1.6" y="-1" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">x₂=1.5</text>
+        
+        {/* Rational line: y = x + 2 (with hole at x=2) */}
+        <line x1="-8" y1="-6" x2="1.8" y2="3.8" stroke="#10b981" strokeWidth="0.15" />
+        <line x1="2.2" y1="4.2" x2="6" y2="8" stroke="#10b981" strokeWidth="0.15" />
+        {/* Root for rational: x=-2 */}
+        <circle cx="-2" cy="0" r="0.2" fill="#10b981" />
+        <text x="-3.5" y="0.5" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">x=-2</text>
+        
+        {/* Hole at x=2, y=4 */}
+        <circle cx="2" cy="4" r="0.2" fill="white" stroke="#ef4444" strokeWidth="0.1" />
+        <text x="2.5" y="4" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">x≠2 (Бөгде түбір)</text>
+
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Теңдеулердің графиктік шешімі</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">1-мысал: 2x² - 5x + 3 = 0. Түбірлері: x=1, x=1.5</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">2-мысал: (x² - 4)/(x - 2) = 0. Түбірі: x=-2</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 border-2 border-red-500 rounded-full bg-white"></div>
+            <span className="opacity-80">Бөгде түбір: x=2 (Бөлшектің бөлімі 0-ге тең)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -701,7 +754,8 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-15":
       case "unit-16": return <StatsGraph />;
       case "unit-2": return <TransformationsGraph />;
-      default: return <FunctionGraph />; // covers unit-1, 4, 5, 17
+      case "unit-4": return <EquationsGraph />;
+      default: return <FunctionGraph />; // covers unit-1, 5, 17
     }
   }
   
