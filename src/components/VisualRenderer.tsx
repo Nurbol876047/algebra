@@ -1780,14 +1780,15 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
 
   if (subjectId === "algebra11") {
     switch (unitId) {
-      case "unit-11-1": return <ExtremaGraph />; // Интеграл (using extrema graph to show area/curves)
+      case "unit-11-1": return <SpecificIntegralGraph />; // Интеграл
       case "unit-11-2": return <SpecificStatisticsHistogramGraph />;   // Статистика
-      case "unit-11-3": return <FunctionGraph />; // Дәрежелік функция
-      case "unit-11-4": return <FunctionGraph />; // Иррационал теңдеулер
+      case "unit-11-3": return <SpecificPowerFunctionGraph />; // Дәрежелік функция
+      case "unit-11-4": return <SpecificIrrationalEquationGraph />; // Иррационал теңдеулер
       case "unit-11-5": return <ComplexPlaneScene />; // Комплекс сандар (2D жазықтық)
-      case "unit-11-6": return <LimitsGraph />;  // Экспонента/Логарифм (асимптоталары бар графиктер)
-      case "unit-11-7": return <FunctionGraph />; // Логарифмдік теңдеулер
-      case "unit-11-8": return <DerivativeGraph />; // Дифференциалдық теңдеулер
+      case "unit-11-6": return <SpecificExpLogGraph />;   // Көрсеткіштік және логарифмдік функциялар
+      case "unit-11-7": return <SpecificExpLogGraph />; // Көрсеткіштік және логарифмдік теңдеулер
+      case "unit-11-8": return <SpecificIntegralGraph />;  // Интеграл және оның қолданылуы
+      default: return <SpecificIntegralGraph />;
     }
   }
 
