@@ -1482,6 +1482,61 @@ function SpecificDerivativeTangentGraph() {
   );
 }
 
+function SpecificDerivativeRulesGraph() {
+  const cubicPoints = useMemo(() => {
+    let pts = "";
+    for(let x = -3; x <= 3; x+=0.1) {
+      pts += `${x},${Math.pow(x, 3)} `;
+    }
+    return pts;
+  }, []);
+
+  const derivPoints = useMemo(() => {
+    let pts = "";
+    for(let x = -3; x <= 3; x+=0.1) {
+      pts += `${x},${3 * Math.pow(x, 2)} `;
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Cubic y = x^3 */}
+        <polyline points={cubicPoints} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Derivative y = 3x^2 */}
+        <polyline points={derivPoints} fill="none" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        
+        <text x="1.5" y="5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">f(x) = x³</text>
+        <text x="-3" y="8" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">f'(x) = 3x²</text>
+        
+        {/* Point x=1 */}
+        <line x1="1" y1="0" x2="1" y2="3" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <circle cx="1" cy="1" r="0.15" fill="#3b82f6" />
+        <circle cx="1" cy="3" r="0.15" fill="#ef4444" />
+        <text x="1.2" y="-0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">x=1</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Дәрежелік функцияның туындысы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Функция: <strong>f(x) = x³</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Туындысы (ереже бойынша): <strong>f'(x) = 3x²</strong></span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-green-600">
+            <span>x = 1 болғанда: f(1) = 1³, ал туындысы f'(1) = 3(1)² = 3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -1513,7 +1568,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-9": return <LimitsGraph />;
       case "unit-10": return <SpecificLimitHoleGraph />;
       case "unit-11": return <SpecificDerivativeTangentGraph />;
-      case "unit-12":
+      case "unit-12": return <SpecificDerivativeRulesGraph />;
       case "unit-13": return <SpecificDerivativeGraph />;
       case "unit-14": return <SpecificExtremaGraph />;
       case "unit-15":
