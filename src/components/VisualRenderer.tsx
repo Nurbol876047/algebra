@@ -1395,6 +1395,93 @@ function SpecificTrigEquationGraph() {
   );
 }
 
+function SpecificLimitHoleGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Line y = x + 3. (x^2-9)/(x-3). x from -5 to 5. If x=-5, y=-2. If x=5, y=8. Let's shift it down by 3 in UI so it fits */}
+        {/* We will just plot points for y = x + 3 */}
+        <line x1="-7" y1="-4" x2="6" y2="9" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Hole at x = 3, y = 6 */}
+        <circle cx="3" cy="6" r="0.2" fill="white" stroke="#ef4444" strokeWidth="0.1" />
+        
+        {/* Dotted lines to axes */}
+        <line x1="3" y1="0" x2="3" y2="6" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="0" y1="6" x2="3" y2="6" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        
+        <text x="3.2" y="-0.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">x = 3</text>
+        <text x="-1.5" y="6.2" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">y = 6</text>
+        <text x="0.5" y="4" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">f(x) = (x²-9)/(x-3)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: 0/0 анықсыздығы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Функция: <strong>f(x) = (x² - 9)/(x - 3)</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full border-2 border-slate-200"></div>
+            <span className="opacity-80">x = 3 нүктесінде функция анықталмаған (графиктегі тесік).</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-blue-600">
+            <span>Шегі: lim (x→3) f(x) = 6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificDerivativeTangentGraph() {
+  const parabolaPoints = useMemo(() => {
+    let pts = "";
+    for(let x = -4; x <= 4; x+=0.1) {
+      pts += `${x},${x*x} `;
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Parabola y = x^2 */}
+        <polyline points={parabolaPoints} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Tangent line at x=1: y - 1 = 2(x - 1) => y = 2x - 1 */}
+        <line x1="-2" y1="-5" x2="4" y2="7" stroke="#ef4444" strokeWidth="0.1" />
+        
+        {/* Tangent point (1, 1) */}
+        <circle cx="1" cy="1" r="0.15" fill="#ef4444" />
+        
+        <text x="-2" y="5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">f(x) = x²</text>
+        <text x="3" y="2" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">y = 2x - 1</text>
+        
+        {/* Triangle to show slope (derivative) */}
+        <line x1="1" y1="1" x2="2" y2="1" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <line x1="2" y1="1" x2="2" y2="3" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <text x="1.5" y="0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">dx=1</text>
+        <text x="2.2" y="2" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">dy=2</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Туындының геометриялық мағынасы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Функция: <strong>f(x) = x²</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">x = 1 нүктесіндегі жанама түзу.</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-green-600">
+            <span>Туынды f'(1) = 2 (жанаманың бұрыштық коэффициенті dy/dx)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -1424,8 +1511,8 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-7": return <SpecificUnitCircle />;
       case "unit-8": return <SpecificTrigEquationGraph />;
       case "unit-9": return <LimitsGraph />;
-      case "unit-10":
-      case "unit-11":
+      case "unit-10": return <SpecificLimitHoleGraph />;
+      case "unit-11": return <SpecificDerivativeTangentGraph />;
       case "unit-12":
       case "unit-13": return <SpecificDerivativeGraph />;
       case "unit-14": return <SpecificExtremaGraph />;
