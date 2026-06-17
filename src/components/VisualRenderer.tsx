@@ -562,7 +562,7 @@ function SequenceGraph() {
       <CoordinateSystem>
         {/* Axis Labels */}
         <text x="8" y="-1" fontSize="1" fill="#64748b" transform="scale(1,-1)">n</text>
-        <text x="0.5" y="8" fontSize="1" fill="#64748b" transform="scale(1,-1)">y_n</text>
+        <text x="0.5" y="-8" fontSize="1" fill="#64748b" transform="scale(1,-1)">y_n</text>
 
         {/* Arithmetic: a_n = 1 + 2(n-1) -> (1,1), (2,3), (3,5), (4,7), (5,9) */}
         <polyline points="1,1 2,3 3,5 4,7 5,9" fill="none" stroke="#3b82f6" strokeWidth="0.2" />
