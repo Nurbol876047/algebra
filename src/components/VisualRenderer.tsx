@@ -1722,46 +1722,53 @@ function SpecificExpLogGraph() {
   );
 }
 
-function SpecificExpEquationGraph() {
-  const expPts = useMemo(() => {
+function SpecificLogEquationGraph() {
+  const logPts = useMemo(() => {
     let pts = "";
-    for (let x = -4; x <= 3.5; x += 0.1) pts += `${x},${Math.pow(2, x+1)} `;
+    // Domain x > 1
+    for (let x = 1.1; x <= 10; x += 0.2) {
+      pts += `${x},${Math.log(x-1) / Math.log(3)} `;
+    }
     return pts;
   }, []);
   
   return (
     <div className="flex flex-col items-center gap-6 w-full">
       <CoordinateSystem>
-        {/* y = 2^{x+1} */}
-        <polyline points={expPts} fill="none" stroke="#ef4444" strokeWidth="0.1" />
+        {/* y = log_3(x-1) */}
+        <polyline points={logPts} fill="none" stroke="#ef4444" strokeWidth="0.1" />
         
-        {/* y = 8 */}
-        <line x1="-8" y1="8" x2="8" y2="8" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        {/* Vertical Asymptote x = 1 */}
+        <line x1="1" y1="-8" x2="1" y2="8" stroke="#f59e0b" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="1.5" y="-6" fontSize="0.5" fill="#f59e0b" transform="scale(1,-1)">Асимптота x=1</text>
+
+        {/* y = 2 */}
+        <line x1="-1" y1="2" x2="10" y2="2" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
         
-        {/* Intersection at (2, 8) */}
-        <circle cx="2" cy="8" r="0.2" fill="#10b981" />
-        <line x1="2" y1="0" x2="2" y2="8" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        {/* Intersection at (10, 2) */}
+        <circle cx="10" cy="2" r="0.2" fill="#10b981" />
+        <line x1="10" y1="0" x2="10" y2="2" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
         
-        <text x="2.2" y="-0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">x=2</text>
-        <text x="-7" y="8.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">y=8</text>
-        <text x="0" y="4" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">y=2^(x+1)</text>
+        <text x="8.5" y="-0.8" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">x=10</text>
+        <text x="-0.5" y="2.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">y=2</text>
+        <text x="6" y="1.2" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">y=log_3(x-1)</text>
       </CoordinateSystem>
       <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
-        <h4 className="text-slate-800 mb-2">Көрсеткіштік теңдеуді графикалық шешу</h4>
+        <h4 className="text-slate-800 mb-2">Логарифмдік теңдеуді шешу</h4>
         <div className="flex flex-col gap-2 text-left pl-4 text-xs">
           <div className="flex items-center gap-2">
-            <span className="opacity-80">Теңдеу: <strong>2^(x+1) = 8</strong></span>
+            <span className="opacity-80">Теңдеу: <strong>log₃(x-1) = 2</strong></span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <span className="opacity-80">Қызыл қисық: <strong>y = 2^(x+1)</strong> функциясы.</span>
+            <span className="opacity-80">Қызыл қисық: <strong>y = log₃(x-1)</strong> (ММЖ: x &gt; 1).</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span className="opacity-80">Көк сызық: <strong>y = 8</strong> тұрақтысы.</span>
+            <span className="opacity-80">Көк сызық: <strong>y = 2</strong> тұрақтысы.</span>
           </div>
           <div className="flex items-center gap-2 mt-1 font-bold text-green-600">
-            <span>Қиылысу нүктесінің абсциссасы теңдеудің түбірі болады: x = 2.</span>
+            <span>Қиылысу нүктесі (10; 2) → Түбірі: x = 10.</span>
           </div>
         </div>
       </div>
@@ -1833,7 +1840,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-11-4": return <SpecificIrrationalEquationGraph />; // Иррационал теңдеулер
       case "unit-11-5": return <ComplexPlaneScene />; // Комплекс сандар (2D жазықтық)
       case "unit-11-6": return <SpecificExpLogGraph />;   // Көрсеткіштік және логарифмдік функциялар
-      case "unit-11-7": return <SpecificExpEquationGraph />; // Көрсеткіштік және логарифмдік теңдеулер
+      case "unit-11-7": return <SpecificLogEquationGraph />; // Логарифмдік теңдеулер
       case "unit-11-8": return <SpecificIntegralGraph />;  // Интеграл және оның қолданылуы
       default: return <SpecificIntegralGraph />;
     }
