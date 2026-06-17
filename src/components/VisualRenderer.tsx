@@ -718,6 +718,158 @@ function EquationsGraph() {
   );
 }
 
+function InequalityGraph() {
+  const parabola = useMemo(() => {
+    let pts = "";
+    for (let x = -4; x <= 5; x += 0.1) pts += `${x},${x * x - x - 6} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Highlighted positive areas */}
+        <rect x="-10" y="-10" width="8" height="20" fill="#10b981" fillOpacity="0.1" />
+        <rect x="3" y="-10" width="7" height="20" fill="#10b981" fillOpacity="0.1" />
+
+        {/* The parabola y = x^2 - x - 6 */}
+        <polyline points={parabola} fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        
+        {/* x-axis interval markings */}
+        <line x1="-10" y1="0" x2="-2" y2="0" stroke="#10b981" strokeWidth="0.2" />
+        <line x1="3" y1="0" x2="10" y2="0" stroke="#10b981" strokeWidth="0.2" />
+        <line x1="-2" y1="0" x2="3" y2="0" stroke="#ef4444" strokeWidth="0.2" />
+
+        {/* Roots: x=-2, x=3 */}
+        <circle cx="-2" cy="0" r="0.2" fill="white" stroke="#10b981" strokeWidth="0.1" />
+        <circle cx="3" cy="0" r="0.2" fill="white" stroke="#10b981" strokeWidth="0.1" />
+        
+        <text x="-2.5" y="-1" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">-2</text>
+        <text x="3" y="-1" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">3</text>
+
+        <text x="-6" y="2" fontSize="0.8" fill="#10b981" transform="scale(1,-1)">+ (оң)</text>
+        <text x="0.5" y="-2" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">- (теріс)</text>
+        <text x="4" y="2" fontSize="0.8" fill="#10b981" transform="scale(1,-1)">+ (оң)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: x² - x - 6 &gt; 0</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Функция графигі: y = x² - x - 6</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">Шешімі (оң аралықтар): (-∞; -2) ∪ (3; +∞)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Теріс аралық (жауапқа кірмейді): (-2; 3)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificUnitCircle() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Main Unit Circle (radius 5 for visibility) */}
+        <circle cx="0" cy="0" r="5" fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Triangle for sin x = 0.8, cos x = 0.6 -> scale by 5 -> (3, 4) */}
+        <line x1="0" y1="0" x2="3" y2="4" stroke="#94a3b8" strokeWidth="0.15" />
+        <line x1="0" y1="0" x2="3" y2="0" stroke="#8b5cf6" strokeWidth="0.15" />
+        <line x1="3" y1="0" x2="3" y2="4" stroke="#10b981" strokeWidth="0.15" strokeDasharray="0.2,0.2" />
+        
+        <circle cx="3" cy="4" r="0.2" fill="#ef4444" />
+        
+        <path d="M 1.5 0 A 1.5 1.5 0 0 1 0.9 1.2" fill="none" stroke="#ef4444" strokeWidth="0.15" />
+        <text x="1.8" y="0.5" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">x</text>
+
+        <text x="1" y="-0.8" fontSize="0.8" fill="#8b5cf6" transform="scale(1,-1)">cos x = 0.6</text>
+        <text x="3.2" y="2" fontSize="0.8" fill="#10b981" transform="scale(1,-1)">sin x = 0.8</text>
+        <text x="0.8" y="2.5" fontSize="0.8" fill="#94a3b8" transform="scale(1,-1)">R = 1</text>
+        <text x="3" y="4.5" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">A(0.6; 0.8)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Негізгі тригонометриялық тепе-теңдік</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Егер <strong>sin x = 0.8</strong> болса, </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80"><strong>cos²x = 1 - sin²x</strong> формуласы бойынша:</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">cos x = √(1 - 0.8²) = √(1 - 0.64) = √0.36 = <strong>0.6</strong></span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-500 mt-1">
+            <span>(Сызбада бірлік шеңбер көрнекілік үшін 5 есе үлкейтілген)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificDerivativeGraph() {
+  const parabola = useMemo(() => {
+    let pts = "";
+    for (let x = -2; x <= 6; x += 0.1) pts += `${x},${x * x - 4 * x} `;
+    return pts;
+  }, []);
+
+  const derivativeLine = useMemo(() => {
+    let pts = "";
+    for (let x = -1; x <= 5; x += 0.1) pts += `${x},${2 * x - 4} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* f(x) = x^2 - 4x */}
+        <polyline points={parabola} fill="none" stroke="#3b82f6" strokeWidth="0.2" />
+        
+        {/* f'(x) = 2x - 4 */}
+        <polyline points={derivativeLine} fill="none" stroke="#ef4444" strokeWidth="0.15" />
+        
+        {/* Minimum point connection */}
+        <line x1="2" y1="-4" x2="2" y2="0" stroke="#10b981" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <circle cx="2" cy="-4" r="0.2" fill="#3b82f6" />
+        <circle cx="2" cy="0" r="0.2" fill="#ef4444" />
+        
+        <text x="2.3" y="-3.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">min(2; -4)</text>
+        <text x="0.5" y="0.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">f'(2) = 0</text>
+        
+        {/* Labels */}
+        <text x="4" y="2" fontSize="0.8" fill="#3b82f6" transform="scale(1,-1)">f(x) = x² - 4x</text>
+        <text x="4" y="5" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">f'(x) = 2x - 4</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Функция және оның туындысы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Функция: f(x) = x² - 4x</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Туындысы: f'(x) = 2x - 4</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">f'(x) = 0 болғанда (x=2), негізгі функция минимумға жетеді.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -741,21 +893,22 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
 
   if (subjectId === "algebra10") {
     switch (unitId) {
-      case "unit-3":
+      case "unit-3": return <FunctionGraph />; // Рационал өрнектер
+      case "unit-5": return <InequalityGraph />;
       case "unit-6":
       case "unit-7":
-      case "unit-8": return <UnitCircle />;
+      case "unit-8": return <SpecificUnitCircle />;
       case "unit-9": return <LimitsGraph />;
       case "unit-10":
       case "unit-11":
-      case "unit-12": return <DerivativeGraph />;
+      case "unit-12":
       case "unit-13":
-      case "unit-14": return <ExtremaGraph />;
+      case "unit-14": return <SpecificDerivativeGraph />;
       case "unit-15":
       case "unit-16": return <StatsGraph />;
       case "unit-2": return <TransformationsGraph />;
       case "unit-4": return <EquationsGraph />;
-      default: return <FunctionGraph />; // covers unit-1, 5, 17
+      default: return <FunctionGraph />; // covers unit-1, 17
     }
   }
   
