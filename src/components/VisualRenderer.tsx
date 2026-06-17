@@ -1544,6 +1544,48 @@ function SpecificDerivativeRulesGraph() {
   );
 }
 
+function SpecificRationalEquationGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* y = (x^2-4)/(x-2) which simplifies to y = x + 2 */}
+        <line x1="-8" y1="-6" x2="6" y2="8" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Hole at x = 2, y = 4 */}
+        <circle cx="2" cy="4" r="0.2" fill="white" stroke="#ef4444" strokeWidth="0.1" />
+        
+        {/* Root at x = -2, y = 0 */}
+        <circle cx="-2" cy="0" r="0.2" fill="#10b981" />
+        
+        {/* Dotted lines for x = 2 hole */}
+        <line x1="2" y1="0" x2="2" y2="4" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="2.2" y="-0.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">x=2 (түбір емес)</text>
+        
+        {/* Label for root */}
+        <text x="-4" y="0.8" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">x = -2 (түбір)</text>
+
+        <text x="-5" y="2" fontSize="0.8" fill="#3b82f6" transform="scale(1,-1)">y = (x²-4)/(x-2)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Бөлшек-рационал теңдеу</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Теңдеу: <strong>(x² - 4)/(x - 2) = 0</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full border-2 border-slate-200"></div>
+            <span className="opacity-80">x = 2 нүктесінде бөлім нөлге айналады, сондықтан ол бөгде түбір (графиктегі тесік).</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="font-bold text-green-600">Жалғыз шешім: x = -2 (графиктің x осін қиятын нүктесі).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -1567,7 +1609,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
 
   if (subjectId === "algebra10") {
     switch (unitId) {
-      case "unit-3": return <FunctionGraph />; // Рационал өрнектер
+      case "unit-3": return <SpecificRationalEquationGraph />; // Рационал өрнектер
       case "unit-5": return <InequalityGraph />;
       case "unit-6": return <SpecificTrigFunctionsGraph />;
       case "unit-7": return <SpecificUnitCircle />;
