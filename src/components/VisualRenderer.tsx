@@ -472,86 +472,134 @@ function AnalyticGeometryScene() {
 }
 
 
-function PolyhedronScene() {
+function SpecificPrismScene() {
   return (
-    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
-      <Canvas camera={{ position: [6, 6, 6], fov: 45 }}>
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [5, 4, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
-        {/* Cube (Prism) */}
-        <Box args={[2, 2, 2]} position={[-2, 1, 0]}>
-          <meshStandardMaterial color="#10b981" transparent opacity={0.8} wireframe={true} />
+        <Box args={[2, 5, 2]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#10b981" transparent opacity={0.6} wireframe={false} />
+        </Box>
+        <Box args={[2.01, 5.01, 2.01]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#34d399" wireframe={true} />
         </Box>
         
-        {/* Pyramid (Cone with 4 radial segments) */}
-        <Cylinder args={[0, 1.5, 2.5, 4]} position={[2, 1.25, 0]}>
-          <meshStandardMaterial color="#f59e0b" transparent opacity={0.8} wireframe={true} />
-        </Cylinder>
-        
         <OrbitControls autoRotate autoRotateSpeed={1.5} />
       </Canvas>
-      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
-        Стереометрия: Призма және Пирамида
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-green-400">Нақты мысал: Дұрыс төртбұрышты призма</span>
+        <span>Табан қабырғасы a = 4, биіктігі h = 10.</span>
+        <span>Толық бетінің ауданы: S = 192.</span>
       </div>
     </div>
   );
 }
 
-function RevolutionBodiesScene() {
+function SpecificPyramidScene() {
   return (
-    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
-      <Canvas camera={{ position: [6, 6, 6], fov: 45 }}>
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [5, 4, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
-        {/* Cylinder */}
-        <Cylinder args={[1.5, 1.5, 3, 32]} position={[-2, 1.5, 0]}>
-          <meshStandardMaterial color="#3b82f6" transparent opacity={0.6} wireframe={true} />
+        <Cylinder args={[0, 2.12, 2, 4]} position={[0, 0, 0]} rotation={[0, Math.PI / 4, 0]}>
+          <meshStandardMaterial color="#f59e0b" transparent opacity={0.7} />
         </Cylinder>
-        
-        {/* Cone */}
-        <Cylinder args={[0, 1.5, 3, 32]} position={[2, 1.5, 0]}>
-          <meshStandardMaterial color="#ef4444" transparent opacity={0.6} wireframe={true} />
+        <Cylinder args={[0, 2.13, 2.01, 4]} position={[0, 0, 0]} rotation={[0, Math.PI / 4, 0]}>
+          <meshStandardMaterial color="#fbbf24" wireframe={true} />
         </Cylinder>
+
+        <Line points={[[0, -1, 0], [0, 1, 0]]} color="#ef4444" lineWidth={2} />
         
         <OrbitControls autoRotate autoRotateSpeed={1.5} />
       </Canvas>
-      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
-        Айналу денелері: Цилиндр және Конус
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-amber-400">Нақты мысал: Дұрыс төртбұрышты пирамида</span>
+        <span>Табан қабырғасы a = 6, биіктігі h = 4, апофемасы l = 5.</span>
+        <span>Толық бетінің ауданы: S = 96.</span>
       </div>
     </div>
   );
 }
 
-function SphereScene() {
+function SpecificConeScene() {
   return (
-    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative">
-      <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [5, 4, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
-        {/* Solid inner sphere */}
-        <Sphere args={[2, 32, 32]} position={[0, 0, 0]}>
-          <meshStandardMaterial color="#8b5cf6" transparent opacity={0.3} />
+        <Cylinder args={[0, 3, 4, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#3b82f6" transparent opacity={0.6} />
+        </Cylinder>
+        <Cylinder args={[0, 3.01, 4.01, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#60a5fa" wireframe={true} />
+        </Cylinder>
+        
+        <Line points={[[0, -2, 0], [0, 2, 0]]} color="#ef4444" lineWidth={2} />
+        <Line points={[[0, -2, 0], [3, -2, 0]]} color="#10b981" lineWidth={2} />
+        <Line points={[[0, 2, 0], [3, -2, 0]]} color="#f59e0b" lineWidth={2} />
+
+        <OrbitControls autoRotate autoRotateSpeed={1.5} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-blue-400">Нақты мысал: Конус ауданы</span>
+        <span>Табан радиусы R = 3, биіктігі h = 4, жасаушысы l = 5.</span>
+        <span>Бүйір беті: S = 15π.</span>
+      </div>
+    </div>
+  );
+}
+
+function SpecificSphereAreaScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [6, 4, 6], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        <Sphere args={[3, 32, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#8b5cf6" transparent opacity={0.4} />
         </Sphere>
-        {/* Wireframe outer sphere */}
-        <Sphere args={[2.01, 16, 16]} position={[0, 0, 0]}>
-          <meshStandardMaterial color="#c4b5fd" wireframe={true} opacity={0.5} transparent />
+        <Sphere args={[3.02, 16, 16]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#c4b5fd" wireframe={true} opacity={0.3} transparent />
         </Sphere>
         
-        {/* Radius line */}
-        <Line points={[[0,0,0], [2,0,0]]} color="#f59e0b" lineWidth={2} />
-        
-        {/* Center dot */}
-        <Sphere args={[0.1, 8, 8]} position={[0, 0, 0]}>
-          <meshStandardMaterial color="#ef4444" />
-        </Sphere>
+        <Line points={[[0,0,0], [3,0,0]]} color="#ef4444" lineWidth={3} />
         
         <OrbitControls autoRotate autoRotateSpeed={1} />
       </Canvas>
-      <div className="absolute bottom-4 left-4 text-white text-sm font-bold bg-black/50 px-4 py-2 rounded-lg">
-        Айналу денелері: Сфера және Шар
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-purple-400">Нақты мысал: Сфера ауданы</span>
+        <span>Радиусы R = 5 см сфера.</span>
+        <span>Сфера ауданы: S = 4πR² = 100π.</span>
+      </div>
+    </div>
+  );
+}
+
+function SpecificSphereVolumeScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        <Sphere args={[2, 32, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#ec4899" transparent opacity={0.7} />
+        </Sphere>
+        <Sphere args={[2.02, 16, 16]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#f472b6" wireframe={true} opacity={0.2} transparent />
+        </Sphere>
+        
+        <OrbitControls autoRotate autoRotateSpeed={2} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-pink-400">Нақты мысал: Шар көлемі</span>
+        <span>Радиусы R = 3 см шар.</span>
+        <span>Көлемі: V = (4/3)πR³ = 36π.</span>
       </div>
     </div>
   );
@@ -1848,11 +1896,13 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
 
   if (subjectId === "geometry11") {
     switch (unitId) {
-      case "unit-11g-1": return <PolyhedronScene />;
+      case "unit-11g-1": 
+        if (topicId === "topic-11g-1-2") return <SpecificPyramidScene />;
+        return <SpecificPrismScene />;
       case "unit-11g-2": 
-        if (topicId === "topic-11g-2-2") return <SphereScene />;
-        return <RevolutionBodiesScene />;
-      case "unit-11g-3": return <RevolutionBodiesScene />;
+        if (topicId === "topic-11g-2-2") return <SpecificSphereAreaScene />;
+        return <SpecificConeScene />;
+      case "unit-11g-3": return <SpecificSphereVolumeScene />;
     }
   }
 
