@@ -870,6 +870,169 @@ function SpecificDerivativeGraph() {
   );
 }
 
+function SpecificExtremaGraph() {
+  const cubic = useMemo(() => {
+    let pts = "";
+    for (let x = -3; x <= 4; x += 0.1) {
+      const y = 0.5 * x * x * x - 0.75 * x * x - 3 * x;
+      pts += `${x},${y} `;
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* The cubic curve */}
+        <polyline points={cubic} fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        
+        {/* Maximum point at x = -1, y = 7 (scaled to 1.75) */}
+        <circle cx="-1" cy="1.75" r="0.2" fill="#ef4444" />
+        <line x1="-1" y1="0" x2="-1" y2="1.75" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <text x="-2.5" y="2.2" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">MAX(-1; 7)</text>
+
+        {/* Minimum point at x = 2, y = -20 (scaled to -5) */}
+        <circle cx="2" cy="-5" r="0.2" fill="#10b981" />
+        <line x1="2" y1="0" x2="2" y2="-5" stroke="#10b981" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <text x="2.5" y="-5.5" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">MIN(2; -20)</text>
+
+        {/* Note on scaling */}
+        <text x="4" y="8" fontSize="0.5" fill="#94a3b8" transform="scale(1,-1)">* Y осі 4 есе кішірейтілген</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Экстремум нүктелерін табу</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Функция: f(x) = 2x³ - 3x² - 12x</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Туындысы: f'(x) = 6x² - 6x - 12 = 0 ➡ x = -1 (Максимум)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">x = 2 нүктесінде туынды терістен оңға ауысады (Минимум)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificProbabilityGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Box representing the urn */}
+        <rect x="-4" y="-3.5" width="8" height="7" fill="none" stroke="#94a3b8" strokeWidth="0.2" rx="0.5" />
+        
+        {/* 4 Red balls */}
+        <circle cx="-2" cy="1.5" r="0.6" fill="#ef4444" />
+        <circle cx="-0.5" cy="2" r="0.6" fill="#ef4444" />
+        <circle cx="1" cy="1.5" r="0.6" fill="#ef4444" />
+        <circle cx="2.5" cy="1.7" r="0.6" fill="#ef4444" />
+
+        {/* 6 Blue balls */}
+        <circle cx="-2.5" cy="-0.5" r="0.6" fill="#3b82f6" />
+        <circle cx="-1" cy="-1" r="0.6" fill="#3b82f6" />
+        <circle cx="0.5" cy="0" r="0.6" fill="#3b82f6" />
+        <circle cx="2" cy="-0.5" r="0.6" fill="#3b82f6" />
+        <circle cx="-2" cy="-2.2" r="0.6" fill="#3b82f6" />
+        <circle cx="1.5" cy="-2.5" r="0.6" fill="#3b82f6" />
+
+        <text x="-3" y="-5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">m = 4</text>
+        <text x="1" y="-5" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">n - m = 6</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Классикалық ықтималдық</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Қорапта барлығы <strong>10 шар</strong> бар (n = 10).</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Қызыл шарлар саны (қолайлы оқиғалар): m = 4.</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Көк шарлар саны: 6.</span>
+          </div>
+          <div className="flex items-center gap-2 mt-2 font-bold text-blue-600">
+            <span>P = m / n = 4 / 10 = 0.4 (немесе 40%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DiscreteRandomVariableGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <defs>
+          <marker id="arrowBlueAxis" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
+          </marker>
+        </defs>
+        {/* Axes */}
+        <line x1="0" y1="0" x2="8" y2="0" stroke="#94a3b8" strokeWidth="0.1" markerEnd="url(#arrowBlueAxis)" />
+        <line x1="0" y1="0" x2="0" y2="8" stroke="#94a3b8" strokeWidth="0.1" markerEnd="url(#arrowBlueAxis)" />
+
+        {/* X values: 0, 1, 2 */}
+        <text x="1.4" y="1" fontSize="0.6" fill="#64748b" transform="scale(1,-1)">0 елтаңба</text>
+        <text x="3.4" y="1" fontSize="0.6" fill="#64748b" transform="scale(1,-1)">1 елтаңба</text>
+        <text x="5.4" y="1" fontSize="0.6" fill="#64748b" transform="scale(1,-1)">2 елтаңба</text>
+
+        {/* Probabilities on Y axis */}
+        <text x="-1.5" y="-2" fontSize="0.6" fill="#64748b" transform="scale(1,-1)">1/4</text>
+        <text x="-1.5" y="-4" fontSize="0.6" fill="#64748b" transform="scale(1,-1)">2/4</text>
+        
+        <line x1="-0.2" y1="2" x2="0.2" y2="2" stroke="#94a3b8" strokeWidth="0.1" />
+        <line x1="-0.2" y1="4" x2="0.2" y2="4" stroke="#94a3b8" strokeWidth="0.1" />
+
+        {/* Bars (multiplying probabilities by 8 for scale) */}
+        {/* P(0) = 1/4 -> height = 2 */}
+        <rect x="1.5" y="0" width="1" height="2" fill="#3b82f6" fillOpacity="0.8" />
+        <text x="1.6" y="-2.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">p=0.25</text>
+
+        {/* P(1) = 2/4 -> height = 4 */}
+        <rect x="3.5" y="0" width="1" height="4" fill="#10b981" fillOpacity="0.8" />
+        <text x="3.6" y="-4.5" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">p=0.5</text>
+
+        {/* P(2) = 1/4 -> height = 2 */}
+        <rect x="5.5" y="0" width="1" height="2" fill="#3b82f6" fillOpacity="0.8" />
+        <text x="5.6" y="-2.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">p=0.25</text>
+
+        {/* Mathematical Expectation M(X) = 1 */}
+        <line x1="4" y1="0" x2="4" y2="5" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <text x="4.2" y="-5.5" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">M(X) = 1</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Тиынды 2 рет лақтыру</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">X кездейсоқ шамасы — елтаңба түсу саны (0, 1 немесе 2).</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">P(X=0) = 1/4 (Екеуі де сан). P(X=2) = 1/4 (Екеуі де елтаңба).</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">P(X=1) = 2/4 = 1/2 (Біреуі елтаңба, біреуі сан).</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Математикалық күтім: M(X) = 0×0.25 + 1×0.5 + 2×0.25 = 1.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -902,13 +1065,14 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-10":
       case "unit-11":
       case "unit-12":
-      case "unit-13":
-      case "unit-14": return <SpecificDerivativeGraph />;
+      case "unit-13": return <SpecificDerivativeGraph />;
+      case "unit-14": return <SpecificExtremaGraph />;
       case "unit-15":
-      case "unit-16": return <StatsGraph />;
+      case "unit-16": return <SpecificProbabilityGraph />;
+      case "unit-17": return <DiscreteRandomVariableGraph />;
       case "unit-2": return <TransformationsGraph />;
       case "unit-4": return <EquationsGraph />;
-      default: return <FunctionGraph />; // covers unit-1, 17
+      default: return <FunctionGraph />; // covers unit-1
     }
   }
   
