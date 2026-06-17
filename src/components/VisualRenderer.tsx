@@ -360,21 +360,27 @@ function ScalarProductScene() {
           </marker>
         </defs>
 
-        <line x1="0" y1="0" x2="6" y2="0" stroke="#3b82f6" strokeWidth="0.2" markerEnd="url(#arrowBlue)" />
-        <text x="5" y="0.8" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">a</text>
+        {/* Vector a(1, 2) scaled by 2 -> (2, 4) */}
+        <line x1="0" y1="0" x2="2" y2="4" stroke="#3b82f6" strokeWidth="0.2" markerEnd="url(#arrowBlue)" />
+        <text x="1.5" y="-4.5" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">a(1; 2)</text>
 
-        <line x1="0" y1="0" x2="4" y2="4" stroke="#ef4444" strokeWidth="0.2" markerEnd="url(#arrowRed)" />
-        <text x="3" y="-4.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">b</text>
+        {/* Vector b(3, -1) scaled by 2 -> (6, -2) */}
+        <line x1="0" y1="0" x2="6" y2="-2" stroke="#ef4444" strokeWidth="0.2" markerEnd="url(#arrowRed)" />
+        <text x="6" y="3.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">b(3; -1)</text>
 
-        <path d="M 1.5 0 A 1.5 1.5 0 0 1 1.06 1.06" fill="none" stroke="#10b981" strokeWidth="0.15" />
+        {/* Angle arc between them */}
+        <path d="M 1.42 -0.47 A 1.5 1.5 0 0 0 0.67 1.34" fill="none" stroke="#10b981" strokeWidth="0.15" />
         <text x="1.8" y="-0.5" fontSize="1" fill="#10b981" transform="scale(1,-1)">φ</text>
 
-        <line x1="4" y1="4" x2="4" y2="0" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
-        <line x1="0" y1="-0.2" x2="4" y2="-0.2" stroke="#f59e0b" strokeWidth="0.1" />
-        <text x="1.5" y="1" fontSize="0.8" fill="#f59e0b" transform="scale(1,-1)">a_b (проекция)</text>
       </CoordinateSystem>
-      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center">
-        Скаляр көбейтінді: <br/> a · b = |a| × |b| × cos(φ)
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Скаляр көбейтінді</h4>
+        <div className="opacity-80">
+          a · b = x₁x₂ + y₁y₂ = 1 × 3 + 2 × (-1) = <span className="text-red-500 font-bold">1</span>
+        </div>
+        <div className="text-xs mt-2 text-slate-500">
+          (Графикте көрнекілік үшін векторлар 2 есе үлкейтіліп сызылған)
+        </div>
       </div>
     </div>
   );
