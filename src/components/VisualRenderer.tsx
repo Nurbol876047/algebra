@@ -595,11 +595,5 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
     }
   }
 
-  return (
-    <div className="w-full flex justify-center">
-      <div className="text-slate-400 font-medium p-8 border-2 border-dashed border-slate-200 rounded-2xl">
-        Бұл тақырып үшін интерактивті модель әзірленуде...
-      </div>
-    </div>
-  );
+  return null;
 }
