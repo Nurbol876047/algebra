@@ -197,18 +197,47 @@ function ExtremaGraph() {
     </div>
   );
 }
-
-function StatsGraph() {
+function SpecificStatisticsHistogramGraph() {
   return (
     <div className="flex flex-col items-center gap-6 w-full">
       <CoordinateSystem>
-        {/* Bell curve (Normal distribution) */}
-        <path d="M -9 0 C -4 0, -2 8, 0 8 C 2 8, 4 0, 9 0" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" strokeWidth="0.2" />
-        <line x1="0" y1="0" x2="0" y2="8" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
-        <text x="0" y="-1" fontSize="1" fill="#ef4444" textAnchor="middle" transform="scale(1,-1)">M(X)</text>
+        {/* We will draw bars for 3, 4, and 5 */}
+        {/* y-axis is frequency (1, 2, 3), x-axis is grade (3, 4, 5) */}
+        
+        {/* Grade 3: count 2 */}
+        <rect x="2.5" y="0" width="1" height="2" fill="#3b82f6" fillOpacity="0.8" />
+        <text x="3" y="-1" fontSize="0.8" fill="#3b82f6" textAnchor="middle" transform="scale(1,-1)">«3»</text>
+        <text x="3" y="2.2" fontSize="0.8" fill="#3b82f6" textAnchor="middle" transform="scale(1,-1)">2 рет</text>
+
+        {/* Grade 4: count 3 */}
+        <rect x="3.5" y="0" width="1" height="3" fill="#ef4444" fillOpacity="0.8" />
+        <text x="4" y="-1" fontSize="0.8" fill="#ef4444" textAnchor="middle" transform="scale(1,-1)">«4»</text>
+        <text x="4" y="3.2" fontSize="0.8" fill="#ef4444" textAnchor="middle" transform="scale(1,-1)">3 рет</text>
+
+        {/* Grade 5: count 2 */}
+        <rect x="4.5" y="0" width="1" height="2" fill="#10b981" fillOpacity="0.8" />
+        <text x="5" y="-1" fontSize="0.8" fill="#10b981" textAnchor="middle" transform="scale(1,-1)">«5»</text>
+        <text x="5" y="2.2" fontSize="0.8" fill="#10b981" textAnchor="middle" transform="scale(1,-1)">2 рет</text>
+        
+        {/* Mean line at x = 4 */}
+        <line x1="4" y1="0" x2="4" y2="4" stroke="#f59e0b" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <text x="4" y="4.5" fontSize="0.7" fill="#f59e0b" textAnchor="middle" transform="scale(1,-1)">Орташа = 4</text>
       </CoordinateSystem>
-      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200">
-        Қалыпты үлестірім: Математикалық күтім M(X) және дисперсия
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Бағалар жиілігі (Гистограмма)</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Берілген бағалар: <strong>3, 4, 5, 4, 4, 3, 5</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
+            <span className="opacity-80">Мода: ең биік баған — <strong>4</strong> (3 рет кездесті).</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
+            <span className="font-bold text-amber-600">Орташа мән: (3×2 + 4×3 + 5×2) / 7 = 28 / 7 = 4.</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1645,7 +1674,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
   if (subjectId === "algebra11") {
     switch (unitId) {
       case "unit-11-1": return <ExtremaGraph />; // Интеграл (using extrema graph to show area/curves)
-      case "unit-11-2": return <StatsGraph />;   // Статистика
+      case "unit-11-2": return <SpecificStatisticsHistogramGraph />;   // Статистика
       case "unit-11-3": return <FunctionGraph />; // Дәрежелік функция
       case "unit-11-4": return <FunctionGraph />; // Иррационал теңдеулер
       case "unit-11-5": return <ComplexPlaneScene />; // Комплекс сандар (2D жазықтық)
