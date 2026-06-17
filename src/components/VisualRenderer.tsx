@@ -522,13 +522,47 @@ function SphereScene() {
   );
 }
 
+function NonLinearSystemGraph() {
+  const linePoints = useMemo(() => {
+    let pts = "";
+    for (let x = -10; x <= 10; x += 0.5) pts += `${x},${x + 1} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Circle: x^2 + y^2 = 25 (r=5) */}
+        <circle cx="0" cy="0" r="5" fill="none" stroke="#10b981" strokeWidth="0.2" />
+        
+        {/* Line: y = x + 1 */}
+        <polyline points={linePoints} fill="none" stroke="#3b82f6" strokeWidth="0.2" />
+        
+        {/* Intersections: (3, 4) and (-4, -3) */}
+        <circle cx="3" cy="4" r="0.3" fill="#ef4444" />
+        <text x="3.5" y="-4.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">(3; 4)</text>
+
+        <circle cx="-4" cy="-3" r="0.3" fill="#ef4444" />
+        <text x="-7.5" y="2.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">(-4; -3)</text>
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Графиктік тәсіл</h4>
+        <p className="text-sm opacity-80">
+          x² + y² = 25 шеңбері мен y = x + 1 түзуінің қиылысу нүктелері теңдеулер жүйесінің шешімі болады:<br/>
+          <span className="font-bold text-red-500">(3; 4) және (-4; -3)</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
   
   if (subjectId === "algebra") {
     switch (unitId) {
-      case "unit-1": return <FunctionGraph />; // Теңдеулер мен теңсіздіктер
+      case "unit-1": return <NonLinearSystemGraph />; // Теңдеулер мен теңсіздіктер
       case "unit-3": return <StatsGraph />;    // Тізбектер
       case "unit-4": return <UnitCircle />;    // Тригонометрия
     }
