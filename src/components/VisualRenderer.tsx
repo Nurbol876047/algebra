@@ -580,26 +580,44 @@ function SpecificSphereAreaScene() {
   );
 }
 
-function SpecificSphereVolumeScene() {
+function SpecificAllVolumesScene() {
   return (
     <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
-      <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+      <Canvas camera={{ position: [0, 5, 12], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
-        <Sphere args={[2, 32, 32]} position={[0, 0, 0]}>
-          <meshStandardMaterial color="#ec4899" transparent opacity={0.7} />
-        </Sphere>
-        <Sphere args={[2.02, 16, 16]} position={[0, 0, 0]}>
-          <meshStandardMaterial color="#f472b6" wireframe={true} opacity={0.2} transparent />
+        {/* Sphere */}
+        <Sphere args={[1, 32, 32]} position={[-5, 0, 0]}>
+          <meshStandardMaterial color="#ec4899" transparent opacity={0.8} />
         </Sphere>
         
-        <OrbitControls autoRotate autoRotateSpeed={2} />
+        {/* Cylinder */}
+        <Cylinder args={[1, 1, 2, 32]} position={[-2.5, 0, 0]}>
+          <meshStandardMaterial color="#3b82f6" transparent opacity={0.8} />
+        </Cylinder>
+        
+        {/* Cone */}
+        <Cylinder args={[0, 1, 2, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#ef4444" transparent opacity={0.8} />
+        </Cylinder>
+        
+        {/* Prism */}
+        <Box args={[1.5, 2, 1.5]} position={[2.5, 0, 0]}>
+          <meshStandardMaterial color="#10b981" transparent opacity={0.8} />
+        </Box>
+        
+        {/* Pyramid */}
+        <Cylinder args={[0, 1.2, 2, 4]} position={[5, 0, 0]} rotation={[0, Math.PI / 4, 0]}>
+          <meshStandardMaterial color="#f59e0b" transparent opacity={0.8} />
+        </Cylinder>
+        
+        <OrbitControls autoRotate autoRotateSpeed={1} />
       </Canvas>
       <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
-        <span className="font-bold text-pink-400">Нақты мысал: Шар көлемі</span>
-        <span>Радиусы R = 3 см шар.</span>
-        <span>Көлемі: V = (4/3)πR³ = 36π.</span>
+        <span className="font-bold text-teal-400">Кеңістік денелерінің көлемдері</span>
+        <span>Шар, Цилиндр, Конус, Призма, Пирамида.</span>
+        <span>Цилиндр мен конустың табаны мен биіктігі бірдей болса: V(цил) = 3 × V(конус).</span>
       </div>
     </div>
   );
@@ -1902,7 +1920,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-11g-2": 
         if (topicId === "topic-11g-2-2") return <SpecificSphereAreaScene />;
         return <SpecificConeScene />;
-      case "unit-11g-3": return <SpecificSphereVolumeScene />;
+      case "unit-11g-3": return <SpecificAllVolumesScene />;
     }
   }
 
