@@ -1842,7 +1842,19 @@ function SpecificLogEquationGraph() {
   );
 }
 
-// --- Main Switcher ---
+import {
+  TrigIdentityGraph,
+  TrigRadiansGraph,
+  TrigFunctionsGraph,
+  TrigPropertiesGraph,
+  TrigReductionGraph,
+  TrigSumGraph,
+  TrigDoubleAngleGraph,
+  TrigHalfAngleGraph,
+  TrigSumProductGraph,
+  TrigProductSumGraph,
+  TrigSimplificationGraph
+} from "./TrigGraphs";
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
   
@@ -1850,7 +1862,19 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
     switch (unitId) {
       case "unit-1": return <NonLinearSystemGraph />; // Теңдеулер мен теңсіздіктер
       case "unit-3": return <SequenceGraph />;    // Тізбектер
-      case "unit-4": return <UnitCircle />;    // Тригонометрия
+      case "unit-4": 
+        if (topicId === "topic-1") return <TrigIdentityGraph />;
+        if (topicId === "topic-2") return <TrigRadiansGraph />;
+        if (topicId === "topic-3") return <TrigFunctionsGraph />;
+        if (topicId === "topic-4") return <TrigPropertiesGraph />;
+        if (topicId === "topic-5") return <TrigReductionGraph />;
+        if (topicId === "topic-6") return <TrigSumGraph />;
+        if (topicId === "topic-7") return <TrigDoubleAngleGraph />;
+        if (topicId === "topic-8") return <TrigHalfAngleGraph />;
+        if (topicId === "topic-9") return <TrigSumProductGraph />;
+        if (topicId === "topic-10") return <TrigProductSumGraph />;
+        if (topicId === "topic-11") return <TrigSimplificationGraph />;
+        return <UnitCircle />;    // Тригонометрия fallback
     }
   }
 
