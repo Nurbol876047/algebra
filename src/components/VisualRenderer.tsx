@@ -1615,6 +1615,113 @@ function SpecificRationalEquationGraph() {
   );
 }
 
+function SpecificIntegralGraph() {
+  const curve = useMemo(() => {
+    let pts = "";
+    for (let x = -2; x <= 4; x += 0.1) pts += `${x},${0.5*x*x + 1} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Fill area under curve from x=1 to x=3 */}
+        <path d="M 1 0 L 1 1.5 Q 2 2.5 3 5.5 L 3 0 Z" fill="#3b82f6" fillOpacity="0.3" />
+        
+        <polyline points={curve} fill="none" stroke="#ef4444" strokeWidth="0.1" />
+        
+        <line x1="1" y1="0" x2="1" y2="1.5" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <line x1="3" y1="0" x2="3" y2="5.5" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        
+        <text x="1.2" y="-0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">a=1</text>
+        <text x="3.2" y="-0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">b=3</text>
+        <text x="2" y="1" fontSize="0.8" fill="#3b82f6" transform="scale(1,-1)">S</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Анықталған интеграл</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <span className="opacity-80">Интегралдың геометриялық мағынасы: қисық сызықты трапецияның ауданы (S).</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificPowerFunctionGraph() {
+  const parabola = useMemo(() => {
+    let pts = "";
+    for (let x = -3; x <= 3; x += 0.1) pts += `${x},${x*x} `;
+    return pts;
+  }, []);
+  const cubic = useMemo(() => {
+    let pts = "";
+    for (let x = -2; x <= 2; x += 0.1) pts += `${x},${x*x*x} `;
+    return pts;
+  }, []);
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polyline points={parabola} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        <polyline points={cubic} fill="none" stroke="#ef4444" strokeWidth="0.1" />
+        <text x="-2" y="4" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">y = x² (Жұп)</text>
+        <text x="2" y="6" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">y = x³ (Тақ)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Дәрежелік функциялар</h4>
+      </div>
+    </div>
+  );
+}
+
+function SpecificIrrationalEquationGraph() {
+  const sqrtPts = useMemo(() => {
+    let pts = "";
+    for (let x = 0; x <= 9; x += 0.1) pts += `${x},${Math.sqrt(x)} `;
+    return pts;
+  }, []);
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polyline points={sqrtPts} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        <line x1="-2" y1="2" x2="9" y2="2" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <circle cx="4" cy="2" r="0.2" fill="#10b981" />
+        <line x1="4" y1="0" x2="4" y2="2" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <text x="4.2" y="-0.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">x=4</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Иррационал теңдеу: √x = 2</h4>
+      </div>
+    </div>
+  );
+}
+
+function SpecificExpLogGraph() {
+  const expPts = useMemo(() => {
+    let pts = "";
+    for (let x = -5; x <= 3; x += 0.1) pts += `${x},${Math.pow(2, x)} `;
+    return pts;
+  }, []);
+  const logPts = useMemo(() => {
+    let pts = "";
+    for (let x = 0.1; x <= 8; x += 0.1) pts += `${x},${Math.log2(x)} `;
+    return pts;
+  }, []);
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polyline points={expPts} fill="none" stroke="#ef4444" strokeWidth="0.1" />
+        <polyline points={logPts} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        <line x1="-5" y1="-5" x2="5" y2="5" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="-3" y="2" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">y = 2^x</text>
+        <text x="3" y="1" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">y = log_2(x)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Көрсеткіштік және логарифмдік функциялар</h4>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
