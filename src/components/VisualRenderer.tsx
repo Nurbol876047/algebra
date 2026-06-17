@@ -1033,6 +1033,269 @@ function DiscreteRandomVariableGraph() {
   );
 }
 
+}
+
+function SpecificTriangleGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Triangle vertices: (-3, -2), (4, -2), (1, 3) */}
+        <polygon points="-3,-2 4,-2 1,3" fill="#3b82f6" fillOpacity="0.2" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Height from (1,3) to (1,-2) */}
+        <line x1="1" y1="3" x2="1" y2="-2" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        {/* Right angle symbol */}
+        <polyline points="1,-1.5 1.5,-1.5 1.5,-2" fill="none" stroke="#ef4444" strokeWidth="0.05" />
+
+        <text x="-1" y="-2.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">a (табаны)</text>
+        <text x="1.2" y="0.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">h (биіктігі)</text>
+        
+        {/* Angles */}
+        <text x="-2.5" y="-1.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">α=50°</text>
+        <text x="2.5" y="-1.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">β=60°</text>
+        <text x="0.5" y="2" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">γ=70°</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Үшбұрыш бұрыштары мен ауданы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">Ішкі бұрыштар қосындысы: 50° + 60° + 70° = 180°</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Ауданы: S = ½ · a · h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificCircleGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Circle centered at (0,0) with R=4 (scaled from 5 for fit) */}
+        <circle cx="0" cy="0" r="4" fill="#3b82f6" fillOpacity="0.2" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Radius line */}
+        <line x1="0" y1="0" x2="3.2" y2="2.4" stroke="#ef4444" strokeWidth="0.1" />
+        <circle cx="0" cy="0" r="0.15" fill="#ef4444" />
+        
+        <text x="1.5" y="2" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">R = 5 см</text>
+        
+        <text x="-2" y="-0.5" fontSize="0.8" fill="#1e293b" transform="scale(1,-1)">S = 25π см²</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Шеңбер және дөңгелек</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Шеңбер ұзындығы: C = 2πR = 10π см</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Радиусы: R = 10π / 2π = 5 см</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="opacity-80 font-bold text-blue-600">Дөңгелек ауданы: S = πR² = 25π см²</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificSimilarTrianglesGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Small Triangle */}
+        <polygon points="-5,-2 -2,-2 -5,2" fill="#10b981" fillOpacity="0.3" stroke="#10b981" strokeWidth="0.1" />
+        <text x="-4" y="-0.5" fontSize="0.8" fill="#10b981" transform="scale(1,-1)">S₁</text>
+        <text x="-3.5" y="-2.5" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">a=3</text>
+        <text x="-5.8" y="0" fontSize="0.6" fill="#10b981" transform="scale(1,-1)">b=4</text>
+
+        {/* Large Triangle: scale factor 2 */}
+        <polygon points="1,-3 7,-3 1,5" fill="#3b82f6" fillOpacity="0.3" stroke="#3b82f6" strokeWidth="0.1" />
+        <text x="3" y="0" fontSize="0.8" fill="#3b82f6" transform="scale(1,-1)">S₂ = 4 · S₁</text>
+        <text x="4" y="-3.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">a'=6</text>
+        <text x="-0.2" y="1" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">b'=8</text>
+        
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Үшбұрыштар ұқсастығы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">Кіші үшбұрыш қабырғалары: a=3, b=4</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="opacity-80">Үлкен үшбұрыш (k=2): a'=6, b'=8</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-blue-600">
+            <span>Аудандар қатынасы: S₂ / S₁ = k² = 2² = 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificPythagoreanGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Right triangle */}
+        <polygon points="0,0 4,0 0,3" fill="#8b5cf6" fillOpacity="0.2" stroke="#8b5cf6" strokeWidth="0.1" />
+        <polyline points="0.4,0 0.4,0.4 0,0.4" fill="none" stroke="#8b5cf6" strokeWidth="0.05" />
+        
+        <text x="2" y="-0.8" fontSize="0.8" fill="#1e293b" transform="scale(1,-1)">a = 4</text>
+        <text x="-1.2" y="1.5" fontSize="0.8" fill="#1e293b" transform="scale(1,-1)">b = 3</text>
+        <text x="2.2" y="2" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">c = 5</text>
+        
+        {/* Squares on the sides */}
+        <polygon points="0,0 4,0 4,-4 0,-4" fill="#3b82f6" fillOpacity="0.1" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="1.5" y="-2" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">a² = 16</text>
+
+        <polygon points="0,0 0,3 -3,3 -3,0" fill="#3b82f6" fillOpacity="0.1" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="-2" y="1.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">b² = 9</text>
+
+        <polygon points="0,3 4,0 7,4 3,7" fill="#ef4444" fillOpacity="0.1" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="3.5" y="3.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">c² = 25</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Пифагор теоремасы</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Тікбұрышты үшбұрыштың катеттері: <strong>a = 4, b = 3</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Гипотенузаның квадраты: c² = a² + b²</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-red-600">
+            <span>c² = 16 + 9 = 25 ➡ c = 5 (Египет үшбұрышы)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificGeometryTrigGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Right triangle: 30 degree angle */}
+        <polygon points="-2,-1.5 5,-1.5 5,2.54" fill="#f59e0b" fillOpacity="0.2" stroke="#f59e0b" strokeWidth="0.1" />
+        <polyline points="4.5,-1.5 4.5,-1 5,-1" fill="none" stroke="#f59e0b" strokeWidth="0.05" />
+        
+        {/* Arc for 30 deg */}
+        <path d="M -0.5 -1.5 A 1.5 1.5 0 0 0 -0.8 -0.8" fill="none" stroke="#1e293b" strokeWidth="0.1" />
+        <text x="-0.3" y="-1.2" fontSize="0.6" fill="#1e293b" transform="scale(1,-1)">30°</text>
+
+        <text x="1.5" y="-2" fontSize="0.7" fill="#64748b" transform="scale(1,-1)">іргелес катет</text>
+        <text x="5.2" y="0.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">қарсы катет (1/2)</text>
+        <text x="0.5" y="1.2" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">гипотенуза (1)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Тригонометриялық қатынастар</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Тікбұрышты үшбұрышта 30° бұрышқа қарсы жатқан катет гипотенузаның жартысына тең.</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-red-600">
+            <span>sin(30°) = қарсы катет / гипотенуза = 1/2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificVector2DGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <defs>
+          <marker id="arrowRedVector" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444" />
+          </marker>
+        </defs>
+        
+        {/* Vector a(3, 4) */}
+        <line x1="0" y1="0" x2="3" y2="4" stroke="#ef4444" strokeWidth="0.15" markerEnd="url(#arrowRedVector)" />
+        
+        {/* Components */}
+        <line x1="0" y1="0" x2="3" y2="0" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="3" y1="0" x2="3" y2="4" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+
+        <text x="1.5" y="-0.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">x = 3</text>
+        <text x="3.2" y="2" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">y = 4</text>
+        <text x="0.5" y="2.5" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">|a| = 5</text>
+        <text x="3.2" y="4.2" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)">ā (3; 4)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Вектордың ұзындығы (модулі)</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Берілгені: <strong>ā (3; 4)</strong> векторы.</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Формула: |ā| = √(x² + y²)</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-red-600">
+            <span>|ā| = √(3² + 4²) = √(9 + 16) = √25 = 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificCoordinateDistanceGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Point A(1, 2) */}
+        <circle cx="1" cy="2" r="0.15" fill="#ef4444" />
+        <text x="0.2" y="2.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">A(1; 2)</text>
+
+        {/* Point B(4, 6) */}
+        <circle cx="4" cy="6" r="0.15" fill="#3b82f6" />
+        <text x="3.2" y="6.5" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">B(4; 6)</text>
+
+        {/* Distance line */}
+        <line x1="1" y1="2" x2="4" y2="6" stroke="#10b981" strokeWidth="0.15" />
+        <text x="1.8" y="4.5" fontSize="0.8" fill="#10b981" transform="scale(1,-1)">d = 5</text>
+
+        {/* Triangle to show coordinates */}
+        <line x1="1" y1="2" x2="4" y2="2" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="4" y1="2" x2="4" y2="6" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        
+        <text x="2.5" y="1.5" fontSize="0.6" fill="#94a3b8" transform="scale(1,-1)">Δx = 4-1 = 3</text>
+        <text x="4.2" y="4" fontSize="0.6" fill="#94a3b8" transform="scale(1,-1)">Δy = 6-2 = 4</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Екі нүкте арасындағы қашықтық</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Берілгені: <strong>A(1; 2)</strong> және <strong>B(4; 6)</strong> нүктелері.</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Формула: d = √((x₂-x₁)² + (y₂-y₁)²)</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-green-600">
+            <span>d = √(3² + 4²) = √25 = 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -1078,12 +1341,14 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
   
   if (subjectId === "geometry10") {
     switch (unitId) {
-      case "unit-19": return <AnalyticGeometryScene />;
-      case "unit-21":
-      case "unit-22": return <PerpendicularityScene />;
-      case "unit-23":
-      case "unit-24": return <VectorsScene />;
-      default: return <ParallelismScene />; // covers unit-18, 20
+      case "unit-18": return <SpecificTriangleGraph />;
+      case "unit-19": return <SpecificCircleGraph />;
+      case "unit-20": return <SpecificSimilarTrianglesGraph />;
+      case "unit-21": return <SpecificPythagoreanGraph />;
+      case "unit-22": return <SpecificGeometryTrigGraph />;
+      case "unit-23": return <SpecificVector2DGraph />;
+      case "unit-24": return <SpecificCoordinateDistanceGraph />;
+      default: return <SpecificTriangleGraph />;
     }
   }
 
