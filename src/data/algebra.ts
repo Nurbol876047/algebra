@@ -290,6 +290,286 @@ $b_1 \\xrightarrow{\\times q} b_2 \\xrightarrow{\\times q} b_3$
             { question: `Егер $\\sin \\alpha = 1$ болса, $\\cos \\alpha$ қандай болады?`, options: [`1`, `-1`, `0`, `Анықталмайды`], correctAnswerIndex: 2 },
             { question: `$\\cot \\alpha$ қандай жағдайда анықталмаған?`, options: [`$\\cos \\alpha = 0$`, `$\\sin \\alpha = 0$`, `$\\tan \\alpha = 1$`, `$\\alpha = 45^\\circ$`], correctAnswerIndex: 1 }
           ]
+        },
+        {
+          id: "topic-2",
+          title: "Бұрыш пен доғаның градустық және радиандық өлшемдері",
+          description: "Градус және радиан ұғымдары, бір-біріне айналдыру.",
+          theory: "Бұрыштың өлшемі екі түрлі болады: градус және радиан. 1 радиан — шеңбер радиусына тең доғаға тірелетін центрлік бұрыш. 180 градус = $\\pi$ радиан.",
+          formulas: "- Градустан радианға: $\\alpha_{rad} = (\\alpha_{deg} \\cdot \\pi) / 180$\n- Радианнан градусқа: $\\alpha_{deg} = (\\alpha_{rad} \\cdot 180) / \\pi$",
+          visualSchemas: "Бірлік шеңбердегі бұрыштар: 0, $\\pi/2$ ($90^\\circ$), $\\pi$ ($180^\\circ$), $3\\pi/2$ ($270^\\circ$), $2\\pi$ ($360^\\circ$).",
+          examples: [
+            {
+              title: "Мысал 1",
+              steps: [
+                { title: "Берілгені", description: "$60^\\circ$-ты радианға айналдырыңыз." },
+                { title: "Шешуі", description: "$60 \\cdot (\\pi / 180) = \\pi / 3$." }
+              ],
+              answer: "\\pi/3"
+            }
+          ],
+          practice: [
+            { question: "$120^\\circ$ радианмен қалай жазылады?", solution: "$120 \\cdot \\pi/180 = 2\\pi/3$", answer: "2\\pi/3" },
+            { question: "$\\pi/4$ радиан неше градус?", solution: "$180/4 = 45^\\circ$", answer: "45" },
+            { question: "$270^\\circ$ радианмен?", solution: "$270 \\cdot \\pi/180 = 3\\pi/2$", answer: "3\\pi/2" }
+          ],
+          selfCheck: ["Радиан деген не?", "Градус пен радианның айырмашылығы қандай?"],
+          miniTest: [
+            { question: "180 градус неше радианға тең?", options: ["$\\pi$", "$2\\pi$", "$\\pi/2$", "$3\\pi/2$"], correctAnswerIndex: 0 },
+            { question: "$\\pi/6$ неше градус?", options: ["30", "60", "45", "90"], correctAnswerIndex: 0 }
+          ]
+        },
+        {
+          id: "topic-3",
+          title: "Кез келген бұрыштың синусы, косинусы, тангенсі және котангенсі",
+          description: "Тригонометриялық функциялардың кез келген бұрыш үшін анықтамасы.",
+          theory: "Бірлік шеңбердегі $(x, y)$ нүктесі үшін: $\\cos \\alpha = x$, $\\sin \\alpha = y$, $\\tan \\alpha = y/x$, $\\cot \\alpha = x/y$. Бұрыш координаттық ширектердің кез келгеніне түсуі мүмкін.",
+          formulas: "$\\sin \\alpha = y$\n$\\cos \\alpha = x$\n$\\tan \\alpha = y/x$ ($x \\neq 0$)\n$\\cot \\alpha = x/y$ ($y \\neq 0$)",
+          visualSchemas: "Бірлік шеңберде нүктенің координаталары $(\\cos \\alpha, \\sin \\alpha)$ ретінде беріледі.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\sin(150^\\circ)$ мәнін табыңыз." },
+                { title: "Шешуі", description: "$150^\\circ$ екінші ширекте. $\\sin(150^\\circ) = 1/2$." }
+              ],
+              answer: "1/2"
+            }
+          ],
+          practice: [
+            { question: "$\\cos(120^\\circ)$ мәнін табыңыз.", solution: "Екінші ширек, косинус теріс. -1/2", answer: "-1/2" },
+            { question: "$\\tan(135^\\circ)$ мәнін табыңыз.", solution: "-1", answer: "-1" },
+            { question: "$\\sin(270^\\circ)$ мәнін табыңыз.", solution: "Төменгі нүкте, -1", answer: "-1" }
+          ],
+          selfCheck: ["Қай ширектерде синус оң?", "Тангенс қай ширектерде теріс?"],
+          miniTest: [
+            { question: "$\\sin(90^\\circ)$ неге тең?", options: ["1", "0", "-1", "0.5"], correctAnswerIndex: 0 },
+            { question: "$\\cos(180^\\circ)$ неге тең?", options: ["1", "0", "-1", "-0.5"], correctAnswerIndex: 2 }
+          ]
+        },
+        {
+          id: "topic-4",
+          title: "Тригонометриялық функциялар және олардың қасиеттері",
+          description: "Анықталу облысы, периодтылығы, жұп-тақтылығы.",
+          theory: "sin және cos үшін: анықталу облысы R, мәндер облысы [-1; 1]. Периоды $2\\pi$. tg және ctg периоды $\\pi$. cos - жұп функция ($\cos(-x) = \\cos x$), ал қалғандары тақ ($\sin(-x) = -\\sin x$).",
+          formulas: "$\\cos(-\\alpha) = \\cos \\alpha$\n$\\sin(-\\alpha) = -\\sin \\alpha$\n$\\tan(-\\alpha) = -\\tan \\alpha$\n$\\cot(-\\alpha) = -\\cot \\alpha$",
+          visualSchemas: "cos функциясы симметриялы (жұп), ал sin функциясы координаттар басына қатысты симметриялы (тақ).",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\cos(-60^\\circ)$ мәнін табыңыз." },
+                { title: "Шешуі", description: "cos жұп функция: $\\cos(-60^\\circ) = \\cos(60^\\circ) = 1/2$." }
+              ],
+              answer: "1/2"
+            }
+          ],
+          practice: [
+            { question: "$\\sin(-30^\\circ)$ неге тең?", solution: "$-\\sin(30^\\circ) = -1/2$", answer: "-1/2" },
+            { question: "$\\tan(-45^\\circ)$ неге тең?", solution: "$-\\tan(45^\\circ) = -1$", answer: "-1" },
+            { question: "$\\cos(-90^\\circ)$ неге тең?", solution: "$\\cos(90^\\circ) = 0$", answer: "0" }
+          ],
+          selfCheck: ["Жұп тригонометриялық функцияны атаңыз.", "Тангенстің периоды қандай?"],
+          miniTest: [
+            { question: "Қай функция жұп?", options: ["sin", "cos", "tg", "ctg"], correctAnswerIndex: 1 },
+            { question: "sin функциясының ең үлкен мәні қандай?", options: ["1", "0", "$\\pi$", "Шексіз"], correctAnswerIndex: 0 }
+          ]
+        },
+        {
+          id: "topic-5",
+          title: "Келтіру формулалары",
+          description: "Үлкен бұрыштарды сүйір бұрыштарға келтіру.",
+          theory: "$\\pi/2$ және $3\\pi/2$ ($90^\\circ$ және $270^\\circ$) арқылы өткенде функция аты өзгереді (sin ↔ cos, tg ↔ ctg). $\\pi$ және $2\\pi$ арқылы өткенде өзгермейді. Таңбасы бастапқы функцияның сол ширектегі таңбасы бойынша қойылады.",
+          formulas: "$\\sin(\\pi/2 - \\alpha) = \\cos \\alpha$\n$\\cos(\\pi + \\alpha) = -\\cos \\alpha$\n$\\tan(3\\pi/2 - \\alpha) = \\cot \\alpha$",
+          visualSchemas: "Келтіру ережесі: 1) Функция аты өзгере ме? (Тік ось - иә, көлденең ось - жоқ). 2) Бастапқы функцияның таңбасы қандай?",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\sin(120^\\circ)$ мәнін келтіру формуласымен табыңыз." },
+                { title: "Шешуі", description: "$\\sin(90^\\circ + 30^\\circ) = \\cos(30^\\circ) = \\sqrt{3}/2$." }
+              ],
+              answer: "\\sqrt{3}/2"
+            }
+          ],
+          practice: [
+            { question: "$\\cos(150^\\circ)$ мәні?", solution: "$\\cos(180^\\circ-30^\\circ) = -\\cos(30^\\circ) = -\\sqrt{3}/2$", answer: "-\\sqrt{3}/2" },
+            { question: "$\\tan(225^\\circ)$ мәні?", solution: "$\\tan(180^\\circ+45^\\circ) = \\tan(45^\\circ) = 1$", answer: "1" },
+            { question: "$\\sin(210^\\circ)$ мәні?", solution: "$\\sin(180^\\circ+30^\\circ) = -\\sin(30^\\circ) = -1/2$", answer: "-1/2" }
+          ],
+          selfCheck: ["Қай ось арқылы өткенде функция аты өзгереді?", "Таңбаны қалай анықтаймыз?"],
+          miniTest: [
+            { question: "$\\cos(\\pi/2 + \\alpha)$ неге тең?", options: ["$\\sin \\alpha$", "$-\\sin \\alpha$", "$\\cos \\alpha$", "$-\\cos \\alpha$"], correctAnswerIndex: 1 },
+            { question: "$\\sin(\\pi - \\alpha)$ неге тең?", options: ["$\\sin \\alpha$", "$-\\sin \\alpha$", "$\\cos \\alpha$", "$-\\cos \\alpha$"], correctAnswerIndex: 0 }
+          ]
+        },
+        {
+          id: "topic-6",
+          title: "Екі бұрыштың қосындысы мен айырымының формулалары",
+          description: "sin(α±β), cos(α±β), tg(α±β) формулалары.",
+          theory: "Бұл формулалар екі бұрыштың қосындысының немесе айырымының функцияларын жеке бұрыштардың функциялары арқылы өрнектеуге мүмкіндік береді.",
+          formulas: "$\\sin(\\alpha \\pm \\beta) = \\sin \\alpha \\cos \\beta \\pm \\cos \\alpha \\sin \\beta$\n$\\cos(\\alpha \\pm \\beta) = \\cos \\alpha \\cos \\beta \\mp \\sin \\alpha \\sin \\beta$\n$\\tan(\\alpha \\pm \\beta) = (\\tan \\alpha \\pm \\tan \\beta) / (1 \\mp \\tan \\alpha \\tan \\beta)$",
+          visualSchemas: "Қосу формулалары тригонометриялық өрнектерді ықшамдаудың негізі болып табылады.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\cos(75^\\circ)$ мәнін табыңыз." },
+                { title: "Шешуі", description: "$\\cos(45^\\circ+30^\\circ) = \\cos 45^\\circ \\cos 30^\\circ - \\sin 45^\\circ \\sin 30^\\circ = (\\sqrt{6} - \\sqrt{2})/4$." }
+              ],
+              answer: "(\\sqrt{6} - \\sqrt{2})/4"
+            }
+          ],
+          practice: [
+            { question: "$\\sin(15^\\circ)$ мәнін табыңыз.", solution: "$\\sin(45^\\circ-30^\\circ) = (\\sqrt{6} - \\sqrt{2})/4$", answer: "(\\sqrt{6} - \\sqrt{2})/4" },
+            { question: "$\\cos(105^\\circ)$ мәнін табыңыз.", solution: "$\\cos(60^\\circ+45^\\circ) = (\\sqrt{2} - \\sqrt{6})/4$", answer: "(\\sqrt{2} - \\sqrt{6})/4" },
+            { question: "$\\sin 15^\\circ \\cos 15^\\circ$ өрнегін есептеңіз", solution: "$\\sin(2 \\cdot 15^\\circ)/2 = \\sin(30^\\circ)/2 = 1/4$", answer: "1/4" }
+          ],
+          selfCheck: ["$\\cos(\\alpha + \\beta)$ формуласында ортада қандай таңба болады?", "$\\sin(\\alpha - \\beta)$ формуласы қандай?"],
+          miniTest: [
+            { question: "$\\cos(\\alpha + \\beta)$ неге тең?", options: ["$\\cos \\alpha \\cos \\beta + \\sin \\alpha \\sin \\beta$", "$\\cos \\alpha \\cos \\beta - \\sin \\alpha \\sin \\beta$", "$\\sin \\alpha \\cos \\beta + \\cos \\alpha \\sin \\beta$", "$\\sin \\alpha \\cos \\beta - \\cos \\alpha \\sin \\beta$"], correctAnswerIndex: 1 },
+            { question: "$\\sin(\\alpha - \\beta)$ неге тең?", options: ["$\\sin \\alpha \\cos \\beta - \\cos \\alpha \\sin \\beta$", "$\\sin \\alpha \\cos \\beta + \\cos \\alpha \\sin \\beta$", "$\\cos \\alpha \\cos \\beta - \\sin \\alpha \\sin \\beta$", "$\\cos \\alpha \\cos \\beta + \\sin \\alpha \\sin \\beta$"], correctAnswerIndex: 0 }
+          ]
+        },
+        {
+          id: "topic-7",
+          title: "Қос бұрыш формулалары",
+          description: "sin(2α), cos(2α), tg(2α) формулалары.",
+          theory: "Қос бұрыш формулалары екі бұрыштың қосындысы формуласынан ($\\alpha=\\beta$ болғанда) шығады.",
+          formulas: "$\\sin(2\\alpha) = 2 \\sin \\alpha \\cos \\alpha$\n$\\cos(2\\alpha) = \\cos^2 \\alpha - \\sin^2 \\alpha = 2 \\cos^2 \\alpha - 1 = 1 - 2 \\sin^2 \\alpha$\n$\\tan(2\\alpha) = 2 \\tan \\alpha / (1 - \\tan^2 \\alpha)$",
+          visualSchemas: "Бұл формулалар бұрышты екі есе кішірейтуге немесе үлкейтуге көмектеседі.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\sin \\alpha = 0.6$, $\\alpha$ - сүйір. $\\sin(2\\alpha)$ табыңыз." },
+                { title: "Шешуі", description: "$\\cos \\alpha = 0.8$. $\\sin(2\\alpha) = 2 \\cdot 0.6 \\cdot 0.8 = 0.96$." }
+              ],
+              answer: "0.96"
+            }
+          ],
+          practice: [
+            { question: "$\\cos \\alpha = 0.6$. $\\cos(2\\alpha)$ табыңыз.", solution: "$2(0.6)^2 - 1 = 0.72 - 1 = -0.28$.", answer: "-0.28" },
+            { question: "$\\sin 15^\\circ \\cos 15^\\circ$ неге тең?", solution: "$(1/2) \\cdot \\sin(30^\\circ) = 1/4$.", answer: "1/4" },
+            { question: "$\\cos^2 15^\\circ - \\sin^2 15^\\circ$ неге тең?", solution: "$\\cos(30^\\circ) = \\sqrt{3}/2$.", answer: "\\sqrt{3}/2" }
+          ],
+          selfCheck: ["$\\cos(2\\alpha)$ формуласының неше түрі бар?", "$\\sin(2\\alpha)$ неге тең?"],
+          miniTest: [
+            { question: "$\\sin(2\\alpha)$ формуласы:", options: ["$\\cos^2 \\alpha - \\sin^2 \\alpha$", "$2 \\sin \\alpha \\cos \\alpha$", "$\\sin^2 \\alpha - \\cos^2 \\alpha$", "$1 - 2 \\sin^2 \\alpha$"], correctAnswerIndex: 1 },
+            { question: "$\\cos(2\\alpha)$ формуласы:", options: ["$2 \\sin \\alpha \\cos \\alpha$", "$\\cos^2 \\alpha - \\sin^2 \\alpha$", "$\\sin^2 \\alpha - \\cos^2 \\alpha$", "$1 + \\tan^2 \\alpha$"], correctAnswerIndex: 1 }
+          ]
+        },
+        {
+          id: "topic-8",
+          title: "Жарты бұрыш формулалары",
+          description: "Дәрежені төмендету және жарты бұрыш формулалары.",
+          theory: "Жарты бұрыш формулалары қос бұрыштың косинусы формуласынан қорытылып шығарылады.",
+          formulas: "$\\sin(\\alpha/2) = \\pm\\sqrt{(1 - \\cos \\alpha) / 2}$\n$\\cos(\\alpha/2) = \\pm\\sqrt{(1 + \\cos \\alpha) / 2}$\n$\\tan(\\alpha/2) = \\sin \\alpha / (1 + \\cos \\alpha) = (1 - \\cos \\alpha) / \\sin \\alpha$",
+          visualSchemas: "Дәрежені төмендету: $\\sin^2 \\alpha = (1 - \\cos 2\\alpha) / 2$, $\\cos^2 \\alpha = (1 + \\cos 2\\alpha) / 2$.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\cos(15^\\circ)$ мәнін табыңыз." },
+                { title: "Шешуі", description: "$\\cos(15^\\circ) = \\sqrt{(1 + \\cos 30^\\circ)/2} = \\sqrt{(1 + \\sqrt{3}/2)/2} = \\sqrt{2+\\sqrt{3}}/2$." }
+              ],
+              answer: "\\sqrt{2+\\sqrt{3}}/2"
+            }
+          ],
+          practice: [
+            { question: "$\\sin(22.5^\\circ)$ мәнін табыңыз.", solution: "$\\sqrt{(1 - \\cos 45^\\circ)/2} = \\sqrt{(2-\\sqrt{2})}/2$", answer: "\\sqrt{(2-\\sqrt{2})}/2" },
+            { question: "$\\cos(22.5^\\circ)$ мәнін табыңыз.", solution: "$\\sqrt{(2+\\sqrt{2})}/2$", answer: "\\sqrt{(2+\\sqrt{2})}/2" },
+            { question: "$1 - \\cos(60^\\circ)$ неге тең? (жарты бұрыш арқылы)", solution: "$2 \\sin^2(30^\\circ) = 2 \\cdot (1/4) = 1/2$", answer: "1/2" }
+          ],
+          selfCheck: ["Дәрежені төмендету формуласы қайдан шығады?", "Жарты бұрыштың таңбасы қалай анықталады?"],
+          miniTest: [
+            { question: "$\\sin^2(\\alpha/2)$ неге тең?", options: ["$(1 - \\cos \\alpha)/2$", "$(1 + \\cos \\alpha)/2$", "$(1 - \\sin \\alpha)/2$", "$(1 + \\sin \\alpha)/2$"], correctAnswerIndex: 0 },
+            { question: "$\\cos^2(\\alpha/2)$ неге тең?", options: ["$(1 - \\cos \\alpha)/2$", "$(1 + \\cos \\alpha)/2$", "$(1 - \\sin \\alpha)/2$", "$(1 + \\sin \\alpha)/2$"], correctAnswerIndex: 1 }
+          ]
+        },
+        {
+          id: "topic-9",
+          title: "Қосындыны көбейтіндіге түрлендіру",
+          description: "sin x ± sin y және cos x ± cos y формулалары.",
+          theory: "Бұл формулалар тригонометриялық теңдеулерді шешуде қосындыны көбейтінді түріне келтіріп, көбейткіштерге жіктеу үшін қолданылады.",
+          formulas: "$\\sin x + \\sin y = 2 \\sin(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$\n$\\sin x - \\sin y = 2 \\sin(\\frac{x-y}{2}) \\cos(\\frac{x+y}{2})$\n$\\cos x + \\cos y = 2 \\cos(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$\n$\\cos x - \\cos y = -2 \\sin(\\frac{x+y}{2}) \\sin(\\frac{x-y}{2})$",
+          visualSchemas: "Қосындыларды көбейтіндіге айналдырғанда бұрыштардың қосындысы мен айырымының жартысы алынады.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\sin 75^\\circ + \\sin 15^\\circ$ есептеңіз." },
+                { title: "Шешуі", description: "$2 \\sin(45^\\circ) \\cos(30^\\circ) = 2 \\cdot (\\sqrt{2}/2) \\cdot (\\sqrt{3}/2) = \\sqrt{6}/2$." }
+              ],
+              answer: "\\sqrt{6}/2"
+            }
+          ],
+          practice: [
+            { question: "$\\cos 105^\\circ + \\cos 15^\\circ$", solution: "$2 \\cos(60^\\circ) \\cos(45^\\circ) = \\sqrt{2}/2$", answer: "\\sqrt{2}/2" },
+            { question: "$\\cos 75^\\circ - \\cos 15^\\circ$", solution: "$-2 \\sin(45^\\circ) \\sin(30^\\circ) = -\\sqrt{2}/2$", answer: "-\\sqrt{2}/2" },
+            { question: "$\\sin 105^\\circ - \\sin 15^\\circ$", solution: "$2 \\sin(45^\\circ) \\cos(60^\\circ) = \\sqrt{2}/2$", answer: "\\sqrt{2}/2" }
+          ],
+          selfCheck: ["$\\cos x - \\cos y$ формуласының алдында қандай таңба бар?", "Қосындыны көбейтіндіге айналдыру не үшін қажет?"],
+          miniTest: [
+            { question: "$\\sin x + \\sin y$ формуласы:", options: ["$2 \\sin(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$", "$2 \\cos(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$", "$-2 \\sin(\\frac{x+y}{2}) \\sin(\\frac{x-y}{2})$", "$2 \\sin(\\frac{x-y}{2}) \\cos(\\frac{x+y}{2})$"], correctAnswerIndex: 0 },
+            { question: "$\\cos x - \\cos y$ формуласы:", options: ["$2 \\cos(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$", "$-2 \\sin(\\frac{x+y}{2}) \\sin(\\frac{x-y}{2})$", "$2 \\sin(\\frac{x+y}{2}) \\cos(\\frac{x-y}{2})$", "$2 \\sin(\\frac{x-y}{2}) \\cos(\\frac{x+y}{2})$"], correctAnswerIndex: 1 }
+          ]
+        },
+        {
+          id: "topic-10",
+          title: "Көбейтіндіні қосындыға түрлендіру",
+          description: "sin x cos y, cos x cos y, sin x sin y формулалары.",
+          theory: "Көбейтінділерді қосындыға айналдыру көбінесе интегралдау немесе күрделі өрнектерді қосылғыштарға ыдырату үшін қажет.",
+          formulas: "$\\sin x \\cos y = \\frac{1}{2} [\\sin(x+y) + \\sin(x-y)]$\n$\\cos x \\cos y = \\frac{1}{2} [\\cos(x+y) + \\cos(x-y)]$\n$\\sin x \\sin y = \\frac{1}{2} [\\cos(x-y) - \\cos(x+y)]$",
+          visualSchemas: "Көбейтінділер формуласында бұрыштардың қосындысы мен айырымы алынады, жартысы емес.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$\\cos 75^\\circ \\cos 15^\\circ$ мәнін табыңыз." },
+                { title: "Шешуі", description: "$\\frac{1}{2} [\\cos 90^\\circ + \\cos 60^\\circ] = \\frac{1}{2} [0 + 1/2] = 1/4$." }
+              ],
+              answer: "1/4"
+            }
+          ],
+          practice: [
+            { question: "$\\sin 75^\\circ \\sin 15^\\circ$", solution: "$\\frac{1}{2} [\\cos 60^\\circ - \\cos 90^\\circ] = 1/4$", answer: "1/4" },
+            { question: "$\\sin 105^\\circ \\cos 15^\\circ$", solution: "$\\frac{1}{2} [\\sin 120^\\circ + \\sin 90^\\circ] = (\\sqrt{3}+2)/4$", answer: "(\\sqrt{3}+2)/4" },
+            { question: "$2 \\sin 15^\\circ \\cos 15^\\circ$", solution: "$\\sin(30^\\circ) = 1/2$", answer: "1/2" }
+          ],
+          selfCheck: ["$\\sin x \\sin y$ формуласында неге $\\cos(x-y)$ бірінші тұрады?", "Көбейтіндіні қосындыға қашан түрлендіреді?"],
+          miniTest: [
+            { question: "$\\cos x \\cos y$ формуласы:", options: ["$0.5[\\cos(x+y) + \\cos(x-y)]$", "$0.5[\\sin(x+y) + \\sin(x-y)]$", "$0.5[\\cos(x-y) - \\cos(x+y)]$", "$0.5[\\sin(x-y) + \\sin(x+y)]$"], correctAnswerIndex: 0 },
+            { question: "$\\sin x \\sin y$ формуласы:", options: ["$0.5[\\cos(x-y) - \\cos(x+y)]$", "$0.5[\\cos(x+y) + \\cos(x-y)]$", "$0.5[\\sin(x+y) + \\sin(x-y)]$", "$0.5[\\cos(x-y) + \\cos(x+y)]$"], correctAnswerIndex: 0 }
+          ]
+        },
+        {
+          id: "topic-11",
+          title: "Тригонометриялық өрнектерді тепе-тең түрлендіру",
+          description: "Тригонометриялық өрнектерді ықшамдау және дәлелдеу әдістері.",
+          theory: "Өрнектерді ықшамдау үшін осыған дейін өтілген барлық формулалар: негізгі тепе-теңдіктер, келтіру, қос бұрыш, жарты бұрыш, қосынды мен көбейтінді формулалары кешенді түрде қолданылады.",
+          formulas: "Барлық тригонометриялық формулалар қолданылады.",
+          visualSchemas: "Негізгі стратегия: 1. Бұрыштарды бірдей ету. 2. Функцияларды бірдей ету (тек sin мен cos-қа көшу). 3. Ортақ көбейткішті жақша сыртына шығару немесе формулаларды қолдану.",
+          examples: [
+            {
+              title: "Мысал",
+              steps: [
+                { title: "Берілгені", description: "$(\\sin 2\\alpha) / (1 + \\cos 2\\alpha)$ ықшамдаңыз." },
+                { title: "Шешуі", description: "$\\sin 2\\alpha = 2 \\sin \\alpha \\cos \\alpha$. $1 + \\cos 2\\alpha = 2 \\cos^2 \\alpha$. Бөлшек: $(2 \\sin \\alpha \\cos \\alpha) / (2 \\cos^2 \\alpha) = \\sin \\alpha / \\cos \\alpha = \\tan \\alpha$." }
+              ],
+              answer: "\\tan \\alpha"
+            }
+          ],
+          practice: [
+            { question: "$(1 - \\cos^2 \\alpha) / (1 - \\sin^2 \\alpha)$", solution: "$\\sin^2 \\alpha / \\cos^2 \\alpha = \\tan^2 \\alpha$", answer: "\\tan^2 \\alpha" },
+            { question: "$\\cos^4 \\alpha - \\sin^4 \\alpha$", solution: "$(\\cos^2 \\alpha - \\sin^2 \\alpha)(\\cos^2 \\alpha + \\sin^2 \\alpha) = \\cos 2\\alpha \\cdot 1 = \\cos 2\\alpha$", answer: "\\cos 2\\alpha" },
+            { question: "$\\sin \\alpha / (1 - \\cos \\alpha) - \\sin \\alpha / (1 + \\cos \\alpha)$", solution: "Алымы: $2 \\sin \\alpha \\cos \\alpha$. Бөлшек: $2 \\sin \\alpha \\cos \\alpha / \\sin^2 \\alpha = 2 \\cot \\alpha$", answer: "2 \\cot \\alpha" }
+          ],
+          selfCheck: ["Қандай жағдайда барлық функцияларды синус пен косинусқа ауыстырған тиімді?", "Бөлшектерді қосқанда қандай тепе-теңдік жиі қолданылады?"],
+          miniTest: [
+            { question: "$\\cos^4 \\alpha - \\sin^4 \\alpha$ неге тең?", options: ["$\\cos 2\\alpha$", "$\\sin 2\\alpha$", "1", "0"], correctAnswerIndex: 0 },
+            { question: "$(\\sin 2\\alpha) / (2 \\cos \\alpha)$ неге тең?", options: ["$\\sin \\alpha$", "$\\cos \\alpha$", "$\\tan \\alpha$", "$\\cot \\alpha$"], correctAnswerIndex: 0 }
+          ]
         }
       ]
     },
