@@ -1296,6 +1296,105 @@ function SpecificCoordinateDistanceGraph() {
   );
 }
 
+function SpecificTrigFunctionsGraph() {
+  const sinPoints = useMemo(() => {
+    let pts = "";
+    for(let x = -2*Math.PI; x <= 2*Math.PI; x+=0.1) {
+      pts += `${x},${Math.sin(x)*2} `;
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Sin curve */}
+        <polyline points={sinPoints} fill="none" stroke="#3b82f6" strokeWidth="0.1" />
+        
+        {/* Key points on [0, 2pi] */}
+        <circle cx="0" cy="0" r="0.15" fill="#ef4444" />
+        <circle cx={Math.PI/2} cy="2" r="0.15" fill="#ef4444" />
+        <circle cx={Math.PI} cy="0" r="0.15" fill="#ef4444" />
+        <circle cx={3*Math.PI/2} cy="-2" r="0.15" fill="#ef4444" />
+        <circle cx={2*Math.PI} cy="0" r="0.15" fill="#ef4444" />
+
+        <text x={Math.PI/2 - 0.5} y="2.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">π/2; 1</text>
+        <text x={Math.PI - 0.2} y="-0.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">π; 0</text>
+        <text x={3*Math.PI/2 - 0.5} y="-2.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">3π/2; -1</text>
+        <text x={2*Math.PI - 0.2} y="0.5" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">2π; 0</text>
+        
+        <text x="4" y="3" fontSize="0.8" fill="#3b82f6" transform="scale(1,-1)">y = sin(x)</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: Тригонометриялық функция графигі</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">y = sin(x) функциясы периодты (T=2π).</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Ең үлкен мәні: 1 (x = π/2 + 2πn кезінде)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Ең кіші мәні: -1 (x = 3π/2 + 2πn кезінде)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpecificTrigEquationGraph() {
+  const cosPoints = useMemo(() => {
+    let pts = "";
+    for(let x = -2*Math.PI; x <= 2*Math.PI; x+=0.1) {
+      pts += `${x},${Math.cos(x)*3} `; // scale y by 3
+    }
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Cos curve */}
+        <polyline points={cosPoints} fill="none" stroke="#10b981" strokeWidth="0.1" />
+        
+        {/* Horizontal line y = 1.5 (which is 0.5 scaled by 3) */}
+        <line x1="-7" y1="1.5" x2="7" y2="1.5" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <text x="5" y="2" fontSize="0.6" fill="#ef4444" transform="scale(1,-1)">y = 1/2</text>
+
+        {/* Intersections near origin */}
+        <circle cx={Math.PI/3} cy="1.5" r="0.15" fill="#3b82f6" />
+        <circle cx={-Math.PI/3} cy="1.5" r="0.15" fill="#3b82f6" />
+        
+        <line x1={Math.PI/3} y1="0" x2={Math.PI/3} y2="1.5" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+        <line x1={-Math.PI/3} y1="0" x2={-Math.PI/3} y2="1.5" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.1,0.1" />
+
+        <text x={Math.PI/3 - 0.3} y="-0.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">π/3</text>
+        <text x={-Math.PI/3 - 0.5} y="-0.5" fontSize="0.6" fill="#3b82f6" transform="scale(1,-1)">-π/3</text>
+      </CoordinateSystem>
+      <div className="text-sm font-bold bg-white p-4 rounded-xl border border-slate-200 text-center shadow-sm w-full max-w-md">
+        <h4 className="text-slate-800 mb-2">Нақты мысал: 2 cos(x) = 1 теңдеуі</h4>
+        <div className="flex flex-col gap-2 text-left pl-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="opacity-80">Теңдеуді түрлендіру: <strong>cos(x) = 1/2</strong></span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="opacity-80">Жасыл қисық: y = cos(x)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span className="opacity-80">Қызыл сызық: y = 1/2</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 font-bold text-blue-600">
+            <span>Қиылысу нүктелері: x = ±π/3 + 2πn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- Main Switcher ---
 
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
@@ -1321,9 +1420,9 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
     switch (unitId) {
       case "unit-3": return <FunctionGraph />; // Рационал өрнектер
       case "unit-5": return <InequalityGraph />;
-      case "unit-6":
-      case "unit-7":
-      case "unit-8": return <SpecificUnitCircle />;
+      case "unit-6": return <SpecificTrigFunctionsGraph />;
+      case "unit-7": return <SpecificUnitCircle />;
+      case "unit-8": return <SpecificTrigEquationGraph />;
       case "unit-9": return <LimitsGraph />;
       case "unit-10":
       case "unit-11":
