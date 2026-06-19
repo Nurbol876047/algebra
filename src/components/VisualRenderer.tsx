@@ -623,6 +623,60 @@ function SpecificAllVolumesScene() {
   );
 }
 
+function PlatonicSolidsScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [5, 4, 5], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        <mesh position={[-2, 0, 0]}>
+          <octahedronGeometry args={[1.5]} />
+          <meshStandardMaterial color="#8b5cf6" transparent opacity={0.8} />
+        </mesh>
+        <mesh position={[2, 0, 0]}>
+          <icosahedronGeometry args={[1.5]} />
+          <meshStandardMaterial color="#ec4899" transparent opacity={0.8} />
+        </mesh>
+
+        <OrbitControls autoRotate autoRotateSpeed={1.5} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-fuchsia-400">Нақты мысал: Платон денелері</span>
+        <span>Октаэдр (8 жақ) және Икосаэдр (20 жақ).</span>
+        <span>Барлық жақтары дұрыс үшбұрыштардан тұрады.</span>
+      </div>
+    </div>
+  );
+}
+
+function CylinderConeScene() {
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-inner relative flex flex-col">
+      <Canvas camera={{ position: [0, 4, 8], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        
+        <mesh position={[-2, 0, 0]}>
+          <cylinderGeometry args={[1.5, 1.5, 3, 32]} />
+          <meshStandardMaterial color="#3b82f6" transparent opacity={0.8} />
+        </mesh>
+        
+        <mesh position={[2, 0, 0]}>
+          <cylinderGeometry args={[0, 1.5, 3, 32]} />
+          <meshStandardMaterial color="#ef4444" transparent opacity={0.8} />
+        </mesh>
+        
+        <OrbitControls autoRotate autoRotateSpeed={1.5} />
+      </Canvas>
+      <div className="absolute bottom-4 left-4 right-4 text-white text-sm bg-black/60 px-4 py-3 rounded-lg flex flex-col gap-1 backdrop-blur-md">
+        <span className="font-bold text-blue-400">Нақты мысал: Айналу денелері</span>
+        <span>Цилиндр (тіктөртбұрышты айналдыру) және Конус (үшбұрышты айналдыру).</span>
+      </div>
+    </div>
+  );
+}
+
 function NonLinearSystemGraph() {
   const linePoints = useMemo(() => {
     let pts = "";
@@ -1908,9 +1962,233 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       default: return <FunctionGraph />; // covers unit-1
     }
   }
+// --- Geometry 10 Visuals (2D SVG) ---
+
+function StereometryAxioms2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polygon points="-4,-2 4,-2 6,4 -2,4" fill="#3b82f6" fillOpacity="0.1" stroke="#3b82f6" strokeWidth="0.1" />
+        <text x="4" y="3" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">α</text>
+        <line x1="-3" y1="5" x2="1" y2="1" stroke="#ef4444" strokeWidth="0.15" />
+        <line x1="1" y1="1" x2="3" y2="-1" stroke="#ef4444" strokeWidth="0.15" strokeDasharray="0.2,0.2" />
+        <line x1="3" y1="-1" x2="6" y2="-4" stroke="#ef4444" strokeWidth="0.15" />
+        <circle cx="1" cy="1" r="0.2" fill="#ef4444" />
+        <text x="1.5" y="-1.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">A</text>
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Аксиома 1: Нүкте, түзу, жазықтық</h4>
+        <p className="text-sm opacity-80">Жазықтықты қиып өтетін түзу және ортақ А нүктесі.</p>
+      </div>
+    </div>
+  );
+}
+
+function ParallelPlanes2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polygon points="-4,-4 4,-4 6,0 -2,0" fill="#10b981" fillOpacity="0.2" stroke="#10b981" strokeWidth="0.1" />
+        <text x="4" y="-1" fontSize="1" fill="#10b981" transform="scale(1,-1)">β</text>
+        <polygon points="-4,2 4,2 6,6 -2,6" fill="#3b82f6" fillOpacity="0.2" stroke="#3b82f6" strokeWidth="0.1" />
+        <text x="4" y="5" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">α</text>
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Параллель жазықтықтар</h4>
+        <p className="text-sm opacity-80">α және β жазықтықтары ешқашан қиылыспайды.</p>
+      </div>
+    </div>
+  );
+}
+
+function Perpendicularity2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <line x1="-6" y1="-2" x2="6" y2="-2" stroke="#3b82f6" strokeWidth="0.2" />
+        <text x="5" y="-1" fontSize="1" fill="#3b82f6" transform="scale(1,-1)">α</text>
+        <line x1="-2" y1="-2" x2="-2" y2="4" stroke="#ef4444" strokeWidth="0.15" />
+        <text x="-3.5" y="-1" fontSize="1" fill="#ef4444" transform="scale(1,-1)">h</text>
+        <line x1="-2" y1="4" x2="4" y2="-2" stroke="#10b981" strokeWidth="0.15" />
+        <text x="1" y="-1.5" fontSize="1" fill="#10b981" transform="scale(1,-1)">L (көлбеу)</text>
+        <line x1="-2" y1="-2" x2="4" y2="-2" stroke="#f59e0b" strokeWidth="0.3" />
+        <text x="0" y="3" fontSize="1" fill="#f59e0b" transform="scale(1,-1)">p (проекция)</text>
+        <polyline points="-2,-1.5 -1.5,-1.5 -1.5,-2" fill="none" stroke="#ef4444" strokeWidth="0.1" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Перпендикуляр, көлбеу және проекция</h4>
+        <p className="text-sm opacity-80">Пифагор теоремасы: L² = h² + p²</p>
+      </div>
+    </div>
+  );
+}
+
+function DihedralAngle2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <circle cx="0" cy="0" r="0.2" fill="#94a3b8" />
+        <line x1="0" y1="0" x2="5" y2="0" stroke="#3b82f6" strokeWidth="0.2" />
+        <line x1="0" y1="0" x2="3" y2="4" stroke="#10b981" strokeWidth="0.2" />
+        <path d="M 2 0 A 2 2 0 0 1 1.2 1.6" fill="none" stroke="#ef4444" strokeWidth="0.1" />
+        <text x="2.5" y="-1" fontSize="1" fill="#ef4444" transform="scale(1,-1)">φ</text>
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Екіжақты бұрыш (Сызықтық бұрыш)</h4>
+        <p className="text-sm opacity-80">Қырына перпендикуляр түсірілген екі түзу арасындағы бұрыш.</p>
+      </div>
+    </div>
+  );
+}
+
+function Prism2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <rect x="-2" y="-2" width="4" height="4" fill="none" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <rect x="-4" y="-4" width="4" height="4" fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="-4" y1="-4" x2="-2" y2="-2" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="-4" y1="0" x2="-2" y2="2" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="0" y1="-4" x2="2" y2="-2" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="0" y1="0" x2="2" y2="2" stroke="#3b82f6" strokeWidth="0.15" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Тікбұрышты параллелепипед</h4>
+        <p className="text-sm opacity-80">Кеңістіктік диагональ: d² = a² + b² + c²</p>
+      </div>
+    </div>
+  );
+}
+
+function Pyramid2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polygon points="-4,-2 4,-2 6,1 -2,1" fill="none" stroke="#94a3b8" strokeWidth="0.15" />
+        <line x1="-4" y1="-2" x2="-2" y2="1" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="-2" y1="1" x2="6" y2="1" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="-4" y1="-2" x2="6" y2="1" stroke="#94a3b8" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="4" y1="-2" x2="-2" y2="1" stroke="#94a3b8" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="1" y1="-0.5" x2="1" y2="6" stroke="#ef4444" strokeWidth="0.15" strokeDasharray="0.2,0.2" />
+        <text x="1.5" y="-3" fontSize="1" fill="#ef4444" transform="scale(1,-1)">H</text>
+        <line x1="1" y1="6" x2="0" y2="-2" stroke="#10b981" strokeWidth="0.15" />
+        <text x="-0.5" y="-2.5" fontSize="1" fill="#10b981" transform="scale(1,-1)">l (апофема)</text>
+        <line x1="1" y1="6" x2="-4" y2="-2" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="1" y1="6" x2="4" y2="-2" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="1" y1="6" x2="6" y2="1" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="1" y1="6" x2="-2" y2="1" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Дұрыс пирамида және апофема</h4>
+        <p className="text-sm opacity-80">Биіктік (H) центріне түседі, апофема (l) — бүйір жағының биіктігі.</p>
+      </div>
+    </div>
+  );
+}
+
+function PlatonicSolids2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <polygon points="-4,0 0,-2 4,0 0,2" fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        <line x1="-4" y1="0" x2="0" y2="2" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="0" y1="2" x2="4" y2="0" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <circle cx="0" cy="5" r="0.15" fill="#ef4444" />
+        <line x1="0" y1="5" x2="-4" y2="0" stroke="#ef4444" strokeWidth="0.15" />
+        <line x1="0" y1="5" x2="0" y2="-2" stroke="#ef4444" strokeWidth="0.15" />
+        <line x1="0" y1="5" x2="4" y2="0" stroke="#ef4444" strokeWidth="0.15" />
+        <line x1="0" y1="5" x2="0" y2="2" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <circle cx="0" cy="-5" r="0.15" fill="#10b981" />
+        <line x1="0" y1="-5" x2="-4" y2="0" stroke="#10b981" strokeWidth="0.15" />
+        <line x1="0" y1="-5" x2="0" y2="-2" stroke="#10b981" strokeWidth="0.15" />
+        <line x1="0" y1="-5" x2="4" y2="0" stroke="#10b981" strokeWidth="0.15" />
+        <line x1="0" y1="-5" x2="0" y2="2" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Октаэдр (Платон денесі)</h4>
+        <p className="text-sm opacity-80">8 тең қабырғалы үшбұрыштан тұратын дұрыс көпжақ.</p>
+      </div>
+    </div>
+  );
+}
+
+function Volumes2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <rect x="-6" y="-4" width="4" height="6" fill="#3b82f6" fillOpacity="0.3" stroke="#3b82f6" strokeWidth="0.15" />
+        <text x="-4" y="-2" fontSize="1" fill="#3b82f6" transform="scale(1,-1)" textAnchor="middle">V = SH</text>
+        <polygon points="2,-4 6,-4 4,2" fill="#ef4444" fillOpacity="0.3" stroke="#ef4444" strokeWidth="0.15" />
+        <text x="4" y="1" fontSize="0.8" fill="#ef4444" transform="scale(1,-1)" textAnchor="middle">V = 1/3 SH</text>
+        <line x1="-2" y1="-4" x2="2" y2="-4" stroke="#94a3b8" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="-2" y1="2" x2="4" y2="2" stroke="#94a3b8" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="0" y1="-4" x2="0" y2="2" stroke="#10b981" strokeWidth="0.15" />
+        <text x="-0.5" y="1" fontSize="1" fill="#10b981" transform="scale(1,-1)">H</text>
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Көлемдердің арақатынасы</h4>
+        <p className="text-sm opacity-80">Табаны мен биіктігі бірдей болғанда, пирамида көлемі призмадан 3 есе кіші.</p>
+      </div>
+    </div>
+  );
+}
+
+function RevolutionBodies2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <line x1="0" y1="-6" x2="0" y2="6" stroke="#94a3b8" strokeWidth="0.15" strokeDasharray="0.3,0.3" />
+        <rect x="-4" y="-4" width="4" height="6" fill="#3b82f6" fillOpacity="0.3" stroke="#3b82f6" strokeWidth="0.15" />
+        <path d="M -4 2 A 4 1 0 0 1 4 2" fill="none" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <path d="M -4 -4 A 4 1 0 0 0 4 -4" fill="none" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="4" y1="-4" x2="4" y2="2" stroke="#3b82f6" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <polygon points="0,2 6,-4 0,-4" fill="#ef4444" fillOpacity="0.5" stroke="#ef4444" strokeWidth="0.15" />
+        <path d="M 0 -4 A 6 1.5 0 0 0 6 -4" fill="none" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+        <line x1="-6" y1="-4" x2="0" y2="2" stroke="#ef4444" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Айналу денелері</h4>
+        <p className="text-sm opacity-80">Тіктөртбұрышты айналдыру — цилиндр, тікбұрышты үшбұрышты айналдыру — конус береді.</p>
+      </div>
+    </div>
+  );
+}
+
+function Sphere2D() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        <circle cx="0" cy="0" r="5" fill="#3b82f6" fillOpacity="0.1" stroke="#3b82f6" strokeWidth="0.2" />
+        <ellipse cx="0" cy="0" rx="5" ry="1.5" fill="none" stroke="#3b82f6" strokeWidth="0.15" strokeDasharray="0.2,0.2" />
+        <path d="M -5 0 A 5 1.5 0 0 0 5 0" fill="none" stroke="#3b82f6" strokeWidth="0.15" />
+        <circle cx="0" cy="0" r="0.15" fill="#ef4444" />
+        <line x1="0" y1="0" x2="5" y2="0" stroke="#ef4444" strokeWidth="0.15" />
+        <text x="2.5" y="-0.5" fontSize="1" fill="#ef4444" transform="scale(1,-1)">R</text>
+        <line x1="0" y1="-5" x2="0" y2="5" stroke="#10b981" strokeWidth="0.1" strokeDasharray="0.2,0.2" />
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Сфера және Шар</h4>
+        <p className="text-sm opacity-80">Үлкен дөңгелек ауданы S = πR², сфераның толық беті S = 4πR².</p>
+      </div>
+    </div>
+  );
+}
+
   
   if (subjectId === "geometry10") {
     switch (unitId) {
+      case "unit-1": return <StereometryAxioms2D />;
+      case "unit-2": return <ParallelPlanes2D />;
+      case "unit-3": return <Perpendicularity2D />;
+      case "unit-4": return <DihedralAngle2D />;
+      case "unit-5": return <Prism2D />;
+      case "unit-6": return <Pyramid2D />;
+      case "unit-7": return <PlatonicSolids2D />;
+      case "unit-8": return <Volumes2D />;
+      case "unit-9": return <RevolutionBodies2D />;
+      case "unit-10": return <Sphere2D />;
+      
+      // Fallbacks for older mapped units if they exist
       case "unit-18": return <SpecificTriangleGraph />;
       case "unit-19": return <SpecificCircleGraph />;
       case "unit-20": return <SpecificSimilarTrianglesGraph />;
@@ -1918,7 +2196,7 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-22": return <SpecificGeometryTrigGraph />;
       case "unit-23": return <SpecificVector2DGraph />;
       case "unit-24": return <SpecificCoordinateDistanceGraph />;
-      default: return <SpecificTriangleGraph />;
+      default: return <StereometryAxioms2D />;
     }
   }
 
