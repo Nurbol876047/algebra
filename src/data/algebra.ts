@@ -7,7 +7,7 @@ export const algebra: Subject = {
   units: [
     {
       id: "unit-1",
-      title: "Екі айнымалысы бар теңдеулер мен теңсіздіктер",
+      title: "1. Екі айнымалысы бар теңдеулер мен теңсіздіктер",
       topics: [
         {
           id: "topic-1",
@@ -89,7 +89,7 @@ $$
     },
     {
       id: "unit-3",
-      title: "Тізбектер",
+      title: "2. Тізбектер",
       topics: [
         {
           id: "topic-1",
@@ -229,7 +229,7 @@ $b_1 \\xrightarrow{\\times q} b_2 \\xrightarrow{\\times q} b_3$
     },
     {
       id: "unit-4",
-      title: "Тригонометрия",
+      title: "3. Тригонометрия",
       topics: [
         {
           id: "topic-1",
@@ -575,7 +575,7 @@ $b_1 \\xrightarrow{\\times q} b_2 \\xrightarrow{\\times q} b_3$
     },
     {
       id: "unit-5",
-      title: "Комбинаторика элементтері",
+      title: "4. Комбинаторика элементтері",
       topics: [
         {
           id: "topic-1",

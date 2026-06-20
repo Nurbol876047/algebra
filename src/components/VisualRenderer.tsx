@@ -1910,6 +1910,118 @@ import {
   TrigSimplificationGraph
 } from "./TrigGraphs";
 
+
+function InverseFunctionGraph() {
+  const parabolaPoints = useMemo(() => {
+    let pts = "";
+    for (let x = 0; x <= 8; x += 0.1) pts += `${x},${x * x} `;
+    return pts;
+  }, []);
+
+  const sqrtPoints = useMemo(() => {
+    let pts = "";
+    for (let x = 0; x <= 8; x += 0.1) pts += `${x},${Math.sqrt(x)} `;
+    return pts;
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* y = x symmetry line */}
+        <line x1="-10" y1="-10" x2="10" y2="10" stroke="#94a3b8" strokeWidth="0.1" strokeDasharray="0.3, 0.3" />
+        <text x="7" y="-8.5" fontSize="0.8" fill="#64748b" transform="scale(1,-1)">y = x</text>
+        
+        {/* f(x) = x^2 (x >= 0) */}
+        <polyline points={parabolaPoints} fill="none" stroke="#3b82f6" strokeWidth="0.2" />
+        
+        {/* g(x) = sqrt(x) */}
+        <polyline points={sqrtPoints} fill="none" stroke="#ef4444" strokeWidth="0.2" />
+
+        {/* Highlight points for symmetry */}
+        {/* (2, 4) on f(x) */}
+        <circle cx="2" cy="4" r="0.2" fill="#3b82f6" />
+        <line x1="2" y1="0" x2="2" y2="4" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="0" y1="4" x2="2" y2="4" stroke="#3b82f6" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="1.5" y="-4.8" fontSize="0.7" fill="#3b82f6" transform="scale(1,-1)">(2; 4)</text>
+
+        {/* (4, 2) on g(x) */}
+        <circle cx="4" cy="2" r="0.2" fill="#ef4444" />
+        <line x1="4" y1="0" x2="4" y2="2" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <line x1="0" y1="2" x2="4" y2="2" stroke="#ef4444" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+        <text x="4.5" y="-2.5" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">(4; 2)</text>
+        
+        {/* Connection between points showing symmetry */}
+        <line x1="2" y1="4" x2="4" y2="2" stroke="#10b981" strokeWidth="0.05" strokeDasharray="0.2,0.2" />
+
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Кері функция графиктерінің симметриялығы</h4>
+        <div className="flex flex-col gap-2 text-sm opacity-80">
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span>Бастапқы функция: f(x) = x² (x ≥ 0)</span>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <span>Кері функция: g(x) = √x</span>
+          </div>
+          <p className="mt-2 text-xs italic text-slate-500">
+            Функция мен оның кері функциясының графиктері <b>y = x</b> түзуіне симметриялы орналасады. Мысалы, (2; 4) нүктесі (4; 2) нүктесіне ауысады.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function TrigInequalityGraph() {
+  return (
+    <div className="flex flex-col items-center gap-6 w-full">
+      <CoordinateSystem>
+        {/* Unit Circle (radius 5 for display scale) */}
+        <circle cx="0" cy="0" r="5" fill="none" stroke="#94a3b8" strokeWidth="0.1" />
+        
+        {/* Line y = 2.5 (representing sin x = 0.5) */}
+        <line x1="-6" y1="2.5" x2="6" y2="2.5" stroke="#ef4444" strokeWidth="0.15" strokeDasharray="0.2,0.2" />
+        <text x="6.5" y="-2.3" fontSize="0.7" fill="#ef4444" transform="scale(1,-1)">y = 1/2</text>
+
+        {/* Highlighted arc for sin x >= 0.5 */}
+        {/* from pi/6 to 5pi/6 -> starting at x=4.33, y=2.5 to x=-4.33, y=2.5 */}
+        <path d="M 4.33 2.5 A 5 5 0 0 0 -4.33 2.5" fill="none" stroke="#10b981" strokeWidth="0.3" />
+        
+        {/* Points at pi/6 and 5pi/6 */}
+        <circle cx="4.33" cy="2.5" r="0.2" fill="#10b981" />
+        <circle cx="-4.33" cy="2.5" r="0.2" fill="#10b981" />
+        
+        <text x="4.8" y="-2.8" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">π/6</text>
+        <text x="-5.5" y="-2.8" fontSize="0.7" fill="#10b981" transform="scale(1,-1)">5π/6</text>
+
+        {/* Shaded area indicator */}
+        <path d="M 4.33 2.5 L -4.33 2.5 A 5 5 0 0 1 4.33 2.5 Z" fill="#10b981" fillOpacity="0.1" />
+
+      </CoordinateSystem>
+      <div className="bg-slate-50 text-slate-700 px-6 py-4 rounded-xl text-center shadow-sm w-full max-w-md border border-slate-200">
+        <h4 className="font-bold mb-2">Нақты мысал: sin(x) ≥ 1/2 теңсіздігі</h4>
+        <div className="flex flex-col gap-2 text-sm opacity-80 text-left pl-4">
+          <p>
+            <b>1-қадам:</b> Бірлік шеңберде y = 1/2 түзуін жүргіземіз (қызыл үзік сызық).
+          </p>
+          <p>
+            <b>2-қадам:</b> Түзу шеңберді π/6 және 5π/6 нүктелерінде қияды.
+          </p>
+          <p>
+            <b>3-қадам:</b> Теңсіздік ≥ болғандықтан, шеңбердің y = 1/2-ден жоғары орналасқан доғасын (<span className="text-green-600 font-bold">жасыл түспен</span>) белгілейміз.
+          </p>
+          <p className="mt-1 font-bold text-center text-blue-600">
+            Жауабы: x ∈ [π/6 + 2πk; 5π/6 + 2πk]
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function VisualRenderer({ subjectId, unitId, topicId }: { subjectId: string, unitId: string, topicId?: string }) {
   
   if (subjectId === "algebra") {
@@ -1938,6 +2050,10 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
         if (topicId === "topic-2") return <ScalarProductScene />;
         return <VectorsAdditionScene />;
       case "unit-3": return <TriangleScene />; // Үшбұрыштарды шешу
+      case "unit-9": 
+        if (topicId === "topic-2") return <VectorsAdditionScene />;
+        if (topicId === "topic-3") return <ScalarProductScene />;
+        return <SpecificVector2DGraph />;
     }
   }
 
@@ -1959,6 +2075,8 @@ export default function VisualRenderer({ subjectId, unitId, topicId }: { subject
       case "unit-17": return <DiscreteRandomVariableGraph />;
       case "unit-2": return <TransformationsGraph />;
       case "unit-4": return <EquationsGraph />;
+      case "unit-inverse-func": return <InverseFunctionGraph />;
+      case "unit-trig-ineq": return <TrigInequalityGraph />;
       default: return <FunctionGraph />; // covers unit-1
     }
   }
@@ -2185,8 +2303,6 @@ function Sphere2D() {
       case "unit-6": return <Pyramid2D />;
       case "unit-7": return <PlatonicSolids2D />;
       case "unit-8": return <Volumes2D />;
-      case "unit-9": return <RevolutionBodies2D />;
-      case "unit-10": return <Sphere2D />;
       
       // Fallbacks for older mapped units if they exist
       case "unit-18": return <SpecificTriangleGraph />;
@@ -2223,6 +2339,8 @@ function Sphere2D() {
         if (topicId === "topic-11g-2-2") return <SpecificSphereAreaScene />;
         return <SpecificConeScene />;
       case "unit-11g-3": return <SpecificAllVolumesScene />;
+      case "unit-9": return <RevolutionBodies2D />;
+      case "unit-10": return <Sphere2D />;
     }
   }
 
